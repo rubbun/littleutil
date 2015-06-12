@@ -72,101 +72,101 @@ public class UserInfo {
 	}
 
 	public String getUser_id() {
-		return user_id;
+		return preference.getString(Constants.values.USERID.name(), null);
 	}
 
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 		Editor edit = preference.edit();
-		edit.putBoolean(Constants.values.SESSION.name(), session);		
+		edit.putString(Constants.values.USERID.name(), user_id);		
 		edit.commit();
 	}
 
 	public String getName() {
-		return name;
+		return preference.getString(Constants.values.NAME.name(), null);
 	}
 
 	public void setName(String name) {
 		this.name = name;
 		Editor edit = preference.edit();
-		edit.putBoolean(Constants.values.SESSION.name(), session);		
+		edit.putString(Constants.values.NAME.name(), name);		
 		edit.commit();
 	}
 
 	public String getEmail() {
-		return email;
+		return preference.getString(Constants.values.EMAIL.name(), null);
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 		Editor edit = preference.edit();
-		edit.putBoolean(Constants.values.SESSION.name(), session);		
+		edit.putString(Constants.values.EMAIL.name(), email);		
 		edit.commit();
 	}
 
 	public String getMobile_no() {
-		return mobile_no;
+		return preference.getString(Constants.values.MOBILE_NO.name(), null);
 	}
 
 	public void setMobile_no(String mobile_no) {
 		this.mobile_no = mobile_no;
 		Editor edit = preference.edit();
-		edit.putBoolean(Constants.values.SESSION.name(), session);		
+		edit.putString(Constants.values.MOBILE_NO.name(), mobile_no);		
 		edit.commit();
 	}
 
 	public String getPassword() {
-		return password;
+		return preference.getString(Constants.values.PASSWORD.name(), null);
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 		Editor edit = preference.edit();
-		edit.putBoolean(Constants.values.SESSION.name(), session);		
+		edit.putString(Constants.values.PASSWORD.name(), password);		
 		edit.commit();
 	}
 
 	public String getArea() {
-		return area;
+		return preference.getString(Constants.values.AREA.name(), null);
 	}
 
 	public void setArea(String area) {
 		this.area = area;
 		Editor edit = preference.edit();
-		edit.putBoolean(Constants.values.SESSION.name(), session);		
+		edit.putString(Constants.values.AREA.name(), area);		
 		edit.commit();
 	}
 
 	public String getCity() {
-		return city;
+		return preference.getString(Constants.values.CITY.name(), null);
 	}
 
 	public void setCity(String city) {
 		this.city = city;
 		Editor edit = preference.edit();
-		edit.putBoolean(Constants.values.SESSION.name(), session);		
+		edit.putString(Constants.values.CITY.name(), city);		
 		edit.commit();
 	}
 
 	public String getCountry() {
-		return country;
+		return preference.getString(Constants.values.COUNTRY.name(), null);
 	}
 
 	public void setCountry(String country) {
 		this.country = country;
 		Editor edit = preference.edit();
-		edit.putBoolean(Constants.values.SESSION.name(), session);		
+		edit.putString(Constants.values.COUNTRY.name(), country);		
 		edit.commit();
 	}
 
 	public String getPincode() {
-		return pincode;
+		return preference.getString(Constants.values.PINCODE.name(), null);
 	}
 
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
 		Editor edit = preference.edit();
-		edit.putBoolean(Constants.values.SESSION.name(), session);		
+		edit.putString(Constants.values.PINCODE.name(), pincode);		
 		edit.commit();
 	}
 
