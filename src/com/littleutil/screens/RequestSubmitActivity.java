@@ -6,8 +6,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.littleutil.R;
 import com.littleutil.BaseActivity;
+import com.littleutil.R;
 import com.littleutil.dialog.DialogAddress;
 import com.littleutil.dialog.DialogAddress.OnAddressSetListener;
 

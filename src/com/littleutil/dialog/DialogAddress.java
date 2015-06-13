@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.littleutil.R;
 import com.littleutil.BaseActivity;
+import com.littleutil.R;
 
 public class DialogAddress {
 	

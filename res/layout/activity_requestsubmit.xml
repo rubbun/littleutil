@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_bg"
     android:orientation="vertical"
-    android:weightSum="1" >
+    android:weightSum="1" 
+    tools:ignore="DuplicateIds">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -130,6 +132,7 @@
                 android:layout_height="1dp"
                 android:background="#848887"
                 android:orientation="vertical" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
@@ -142,7 +145,8 @@
                     android:id="@+id/imageView2"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/ic_mobile" />
+                    android:src="@drawable/ic_mobile"
+                     />
 
                 <EditText
                     android:id="@+id/etPhone"
@@ -171,6 +175,7 @@
                 android:layout_height="1dp"
                 android:background="#848887"
                 android:orientation="vertical" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
@@ -212,6 +217,7 @@
                 android:layout_height="1dp"
                 android:background="#848887"
                 android:orientation="vertical" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
@@ -253,6 +259,7 @@
                 android:layout_height="1dp"
                 android:background="#848887"
                 android:orientation="vertical" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
@@ -272,14 +279,14 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@null"
+                    android:drawableRight="@drawable/ic_dropdown"
+                    android:editable="false"
                     android:hint="@string/city"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:paddingLeft="8dp"
                     android:singleLine="true"
                     android:textColor="#282c2b"
-                     android:editable="false"
-                     android:drawableRight="@drawable/ic_dropdown"
                     android:textColorHint="#000000" >
                 </EditText>
             </LinearLayout>
@@ -296,6 +303,7 @@
                 android:layout_height="1dp"
                 android:background="#848887"
                 android:orientation="vertical" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
@@ -337,6 +345,7 @@
                 android:layout_height="1dp"
                 android:background="#848887"
                 android:orientation="vertical" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
@@ -356,14 +365,14 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@null"
+                    android:drawableRight="@drawable/ic_dropdown"
+                    android:editable="false"
                     android:hint="@string/select_date"
-                   android:imeOptions="actionDone"
+                    android:imeOptions="actionDone"
                     android:inputType="text"
                     android:paddingLeft="8dp"
                     android:singleLine="true"
                     android:textColor="#282c2b"
-                    android:editable="false"
-                    android:drawableRight="@drawable/ic_dropdown"
                     android:textColorHint="#000000" >
                 </EditText>
             </LinearLayout>
@@ -384,10 +393,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_confirm"
+            android:onClick="OnConfirmClick"
             android:text="CONFIRM"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            android:onClick="OnConfirmClick"
             android:textStyle="bold" />
     </LinearLayout>
 
