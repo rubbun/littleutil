@@ -21,7 +21,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 
-import com.example.littleutil.R;
+import com.littleutil.R;
 
 public class ImageLoader {
     
