@@ -50,7 +50,4 @@ public class BaseActivity extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v) {}
 
-	
-	
-	
 }
