@@ -1,5 +1,6 @@
 package com.littleutil.screens;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -45,7 +46,7 @@ public class SplashScreen extends BaseActivity{
 				obj.put("id", "1");
 				String response = HttpClient.SendHttpPost(Constants.FETCH_SUBERVICES, obj.toString());
 				if(response != null){
-					
+					JSONArray arr = new JSONArray(response);
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
