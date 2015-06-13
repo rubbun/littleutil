@@ -6,6 +6,7 @@ public class ServiceBean {
 
 	public String service_name,id;
 	public ArrayList<SubServiceBean> list = new ArrayList<SubServiceBean>();
+	
 	public ServiceBean(String service_name, String id, ArrayList<SubServiceBean> list) {
 		super();
 		this.service_name = service_name;

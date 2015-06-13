@@ -1,21 +1,34 @@
 package com.littleutil.screens;
 
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.littleutil.BaseActivity;
 import com.littleutil.R;
+import com.littleutil.adapter.ExpandableListAdapter;
+import com.littleutil.bean.ServiceBean;
+import com.littleutil.bean.SubServiceBean;
 
 public class DashBoard extends BaseActivity implements OnClickListener{
 
 	private Intent mIntent;
+	private int lastExpandedPosition = -1;
+	private ExpandableListView expandableListView1;
+	private ExpandableListAdapter adapter;
 	public SlidingMenu slidingMenu;
 	private ImageView iv_menu,iv_search,iv_whatsapp,iv_call;
 	private LinearLayout ll_home_service,ll_general_service,ll_billing_service;
@@ -32,6 +45,20 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 		slidingMenu.setFadeDegree(0.35f);
 		slidingMenu.attachToActivity(DashBoard.this, SlidingMenu.SLIDING_CONTENT);
 		slidingMenu.setMenu(R.layout.dashboard_slider);
+		
+		expandableListView1 = (ExpandableListView)findViewById(R.id.expandableListView1);
+		expandableListView1.setGroupIndicator(null);
+		expandableListView1.setOnGroupExpandListener(new OnGroupExpandListener() {
+
+		    @Override
+		    public void onGroupExpand(int groupPosition) {
+		            if (lastExpandedPosition != -1
+		                    && groupPosition != lastExpandedPosition) {
+		            	expandableListView1.collapseGroup(lastExpandedPosition);
+		            }
+		            lastExpandedPosition = groupPosition;
+		    }
+		});
 		
 		ll_home_service = (LinearLayout)findViewById(R.id.ll_home_service);
 		ll_general_service = (LinearLayout)findViewById(R.id.ll_general_service);
@@ -55,6 +82,10 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 		ll_general_service.setOnClickListener(this);
 		ll_home_service.setOnClickListener(this);
 	
+		System.out.println("!!size1:"+arr[0]);
+		System.out.println("!!size2:"+arr[1]);
+		System.out.println("!!size3:"+arr[2]);
+		createList();
 	}
 
 	@Override
@@ -80,14 +111,52 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 			
 		case R.id.ll_home_service:
 			mIntent = new Intent(DashBoard.this,InnerServices.class);
+			mIntent.putExtra("id", 1);
 			startActivity(mIntent);
 			break;
 		
 		case R.id.ll_general_service:
+			mIntent = new Intent(DashBoard.this,InnerServices.class);
+			mIntent.putExtra("id", 2);
+			startActivity(mIntent);
 			break;
 			
 		case R.id.ll_billing_service:
+			mIntent = new Intent(DashBoard.this,InnerServices.class);
+			mIntent.putExtra("id", 3);
+			startActivity(mIntent);
 			break;
 		}
+	}
+	
+	private void createList() {
+		ArrayList<SubServiceBean> list1 = new ArrayList<SubServiceBean>();
+		list1.add(new SubServiceBean("1", "Track Your status", ""));
+		list1.add(new SubServiceBean("2", "Change your password", ""));
+		serviceList.add(new ServiceBean("Settings", "0", list1));
+		for(int i= 0 ; i <arr.length; i++){
+			ArrayList<SubServiceBean> list = new ArrayList<SubServiceBean>();
+			JSONArray jarr;
+			try {
+				jarr = new JSONArray(arr[i]);
+				for(int j = 0; j < jarr.length(); j++){
+					JSONObject object = jarr.getJSONObject(j);
+					list.add(new SubServiceBean(object.getString("id"),
+							object.getString("name"), 
+							object.getString("path")));
+				}
+				if(i == 0){
+					serviceList.add(new ServiceBean("Hotel Service", "1", list));
+				}else if(i == 1){
+					serviceList.add(new ServiceBean("General Service", "2", list));
+				}else if(i == 2){
+					serviceList.add(new ServiceBean("Billing Service", "3", list));
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+		adapter = new ExpandableListAdapter(DashBoard.this, serviceList);
+		expandableListView1.setAdapter(adapter);
 	}
 }

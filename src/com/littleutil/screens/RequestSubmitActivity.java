@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.littleutil.BaseActivity;
@@ -31,17 +32,19 @@ public class RequestSubmitActivity extends BaseActivity {
 
 	private EditText etName, etEmail, etPhone, etPassword, etAddress, etCity, etZipCode, etDate,etArea;
 	private ImageView ivBack;
+	private TextView tv_service_name;
 	private Button btnConfirm;
 	private DatePicker datePicker;
 	private Calendar calendar;
 	private int year, month, day;
-	private String date, time;
+	private String date, time,name;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_requestsubmit);
 
+		tv_service_name = (TextView)findViewById(R.id.tv_service_name);
 		etName = (EditText) findViewById(R.id.etName);
 		etEmail = (EditText) findViewById(R.id.etEmail);
 		etPhone = (EditText) findViewById(R.id.etPhone);
@@ -55,7 +58,11 @@ public class RequestSubmitActivity extends BaseActivity {
 		btnConfirm = (Button) findViewById(R.id.btnConfirm);
 		calendar = Calendar.getInstance();
 
+		name = getIntent().getExtras().getString("name");
+		tv_service_name.setText(name);
+		
 		etAddress.setOnClickListener(this);
+		ivBack.setOnClickListener(this);
 	}
 
 	public void OnConfirmClick() {
@@ -84,6 +91,10 @@ public class RequestSubmitActivity extends BaseActivity {
 
 		case R.id.etDate:
 			showDialog(999);
+			break;
+			
+		case R.id.ivBack:
+			finish();
 			break;
 			
 		case R.id.btnConfirm:

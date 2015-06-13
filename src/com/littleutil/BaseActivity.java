@@ -1,5 +1,7 @@
 package com.littleutil;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -8,11 +10,14 @@ import android.view.View.OnClickListener;
 
 import com.littleutil.application.Appsettings;
 import com.littleutil.application.UserInfo;
+import com.littleutil.bean.ServiceBean;
 
 public class BaseActivity extends Activity implements OnClickListener{
 
 	public ProgressDialog dialog;
 	public Appsettings app = null;
+	public static ArrayList<ServiceBean> serviceList = new ArrayList<ServiceBean>();
+	public static String[] arr = new String[3];
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
