@@ -2,6 +2,7 @@ package com.littleutil.screens;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -78,6 +79,8 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 			break;
 			
 		case R.id.ll_home_service:
+			mIntent = new Intent(DashBoard.this,InnerServices.class);
+			startActivity(mIntent);
 			break;
 		
 		case R.id.ll_general_service:

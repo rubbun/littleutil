@@ -29,6 +29,10 @@
             android:name="com.littleutil.screens.DashBoard"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.littleutil.screens.InnerServices"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
