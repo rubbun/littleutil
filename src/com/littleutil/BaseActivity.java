@@ -3,11 +3,13 @@ package com.littleutil;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 import com.littleutil.application.Appsettings;
 import com.littleutil.application.UserInfo;
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends Activity implements OnClickListener{
 
 	public ProgressDialog dialog;
 	public Appsettings app = null;
@@ -44,4 +46,11 @@ public class BaseActivity extends Activity {
 			}
 		});
 	}
+
+	@Override
+	public void onClick(View v) {}
+
+	
+	
+	
 }
