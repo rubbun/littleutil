@@ -25,6 +25,7 @@ import com.littleutil.BaseActivity;
 import com.littleutil.R;
 import com.littleutil.dialog.DialogAddress;
 import com.littleutil.dialog.DialogAddress.OnAddressSetListener;
+import com.littleutil.network.HttpClient;
 
 public class RequestSubmitActivity extends BaseActivity {
 
@@ -86,7 +87,9 @@ public class RequestSubmitActivity extends BaseActivity {
 			break;
 			
 		case R.id.btnConfirm:
-			
+			if(isValid()){
+				new ReqAsynctask().execute(createReq());
+			}
 			break;
 
 		}
@@ -203,8 +206,18 @@ public class RequestSubmitActivity extends BaseActivity {
 
 		@Override
 		protected Boolean doInBackground(JSONObject... params) {
+			try{
 			
-			return null;
+			String response = HttpClient.SendHttpPost("", params[0].toString());
+					if(response!= null){
+						JSONObject jsonObject = new JSONObject(response);
+						return jsonObject.getBoolean("status");
+					}
+			}catch(Exception e){
+				
+			}
+			
+			return false;
 		}
 		
 		@Override
