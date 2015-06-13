@@ -26,5 +26,7 @@
     <string name="input_your_address_here">Input Your Address Here</string>
     
     <string name="please_enter_address">Please enter Address</string>
+    
+    <string name="area">Area</string>
 
 </resources>
