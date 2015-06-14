@@ -61,7 +61,17 @@ public class RequestSubmitActivity extends BaseActivity {
 		name = getIntent().getExtras().getString("name");
 		tv_service_name.setText(name);
 		
+		etDate.setKeyListener(null);
+		etAddress.setKeyListener(null);
+		etCity.setKeyListener(null);
+		
+		/*etDate.setEnabled(false);
+		etAddress.setEnabled(false);
+		etCity.setEnabled(false);*/
+		
 		etAddress.setOnClickListener(this);
+		etCity.setOnClickListener(this);
+		etDate.setOnClickListener(this);
 		ivBack.setOnClickListener(this);
 	}
 

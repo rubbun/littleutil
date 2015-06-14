@@ -5,13 +5,11 @@
     android:layout_height="match_parent"
     android:background="@drawable/main_bg"
     android:orientation="vertical"
-    android:weightSum="1" 
-    tools:ignore="DuplicateIds">
+    tools:ignore="DuplicateIds" >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.08"
+        android:layout_height="50dp"
         android:background="#007A87"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -34,414 +32,427 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.88"
-        android:orientation="vertical"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="10dp"
-         >
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:orientation="vertical" >
+   
 
+   
+             <LinearLayout
+                 android:id="@+id/ll_1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.88"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.125"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_name" />
+
+                    <EditText
+                        android:id="@+id/etName"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@null"
+                        android:hint="@string/name"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingLeft="8dp"
+                        android:singleLine="true"
+                        android:textColor="#282c2b"
+                        android:textColorHint="#000000" >
+                    </EditText>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.125"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#848887"
+                    android:orientation="vertical" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_mail" />
+
+                    <EditText
+                        android:id="@+id/etEmail"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@null"
+                        android:hint="@string/email"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:paddingLeft="8dp"
+                        android:singleLine="true"
+                        android:textColor="#282c2b"
+                        android:textColorHint="#000000" >
+                    </EditText>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.125"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#848887"
+                    android:orientation="vertical" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_mobile" />
+
+                    <EditText
+                        android:id="@+id/etPhone"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@null"
+                        android:hint="@string/mobile"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:paddingLeft="8dp"
+                        android:singleLine="true"
+                        android:textColor="#282c2b"
+                        android:textColorHint="#000000" >
+                    </EditText>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.125"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#848887"
+                    android:orientation="vertical" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_password" />
+
+                    <EditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@null"
+                        android:hint="@string/password"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPassword"
+                        android:paddingLeft="8dp"
+                        android:singleLine="true"
+                        android:textColor="#282c2b"
+                        android:textColorHint="#000000" >
+                    </EditText>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.125"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#848887"
+                    android:orientation="vertical" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_location" />
+
+                    <EditText
+                        android:id="@+id/etAddress"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@null"
+                        android:hint="@string/address"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingLeft="8dp"
+                        android:singleLine="true"
+                        android:textColor="#282c2b"
+                        android:textColorHint="#000000" >
+                    </EditText>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.125"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#848887"
+                    android:orientation="vertical" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_location" />
+
+                    <EditText
+                        android:id="@+id/etArea"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@null"
+                        android:hint="@string/area"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingLeft="8dp"
+                        android:singleLine="true"
+                        android:textColor="#282c2b"
+                        android:textColorHint="#000000" >
+                    </EditText>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.125"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#848887"
+                    android:orientation="vertical" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_city" />
+
+                    <EditText
+                        android:id="@+id/etCity"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@null"
+                        android:drawableRight="@drawable/ic_dropdown"
+                        android:editable="false"
+                        android:hint="@string/city"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingLeft="8dp"
+                        android:singleLine="true"
+                        android:textColor="#282c2b"
+                        android:textColorHint="#000000" >
+                    </EditText>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.125"
+                android:visibility="gone"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#848887"
+                    android:orientation="vertical" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_zipcode" />
+
+                    <EditText
+                        android:id="@+id/etZipCode"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@null"
+                        android:hint="@string/zipcode"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:paddingLeft="8dp"
+                        android:singleLine="true"
+                        android:textColor="#282c2b"
+                        android:textColorHint="#000000" >
+                    </EditText>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.125"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#848887"
+                    android:orientation="vertical" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_date" />
+
+                    <EditText
+                        android:id="@+id/etDate"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@null"
+                        android:drawableRight="@drawable/ic_dropdown"
+                        android:editable="false"
+                        android:hint="@string/select_date"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:paddingLeft="8dp"
+                        android:singleLine="true"
+                        android:textColor="#282c2b"
+                        android:textColorHint="#000000" >
+                    </EditText>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    
+
+
+   
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.125"
-            android:orientation="vertical" >
+            android:layout_weight="0.12"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="4dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="4dp" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" >
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_name" />
-
-                <EditText
-                    android:id="@+id/etName"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@null"
-                    android:hint="@string/name"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:paddingLeft="8dp"
-                    android:singleLine="true"
-                    android:textColor="#282c2b"
-                    android:textColorHint="#000000" >
-                </EditText>
-            </LinearLayout>
+            <Button
+                android:id="@+id/btnConfirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_confirm"
+                android:onClick="OnConfirmClick"
+                android:text="CONFIRM"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.125"
-            android:orientation="vertical" >
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#848887"
-                android:orientation="vertical" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" >
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_mail" />
-
-                <EditText
-                    android:id="@+id/etEmail"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@null"
-                    android:hint="@string/email"
-                    android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
-                    android:paddingLeft="8dp"
-                    android:singleLine="true"
-                    android:textColor="#282c2b"
-                    android:textColorHint="#000000" >
-                </EditText>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.125"
-            android:orientation="vertical" >
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#848887"
-                android:orientation="vertical" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" >
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_mobile"
-                     />
-
-                <EditText
-                    android:id="@+id/etPhone"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@null"
-                    android:hint="@string/mobile"
-                    android:imeOptions="actionNext"
-                    android:inputType="phone"
-                    android:paddingLeft="8dp"
-                    android:singleLine="true"
-                    android:textColor="#282c2b"
-                    android:textColorHint="#000000" >
-                </EditText>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.125"
-            android:orientation="vertical" >
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#848887"
-                android:orientation="vertical" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" >
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_password" />
-
-                <EditText
-                    android:id="@+id/etPassword"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@null"
-                    android:hint="@string/password"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPassword"
-                    android:paddingLeft="8dp"
-                    android:singleLine="true"
-                    android:textColor="#282c2b"
-                    android:textColorHint="#000000" >
-                </EditText>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.125"
-            android:orientation="vertical" >
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#848887"
-                android:orientation="vertical" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" >
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_location" />
-
-                <EditText
-                    android:id="@+id/etAddress"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@null"
-                    android:hint="@string/address"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:paddingLeft="8dp"
-                    android:singleLine="true"
-                    android:textColor="#282c2b"
-                    android:textColorHint="#000000" >
-                </EditText>
-            </LinearLayout>
-        </LinearLayout>
-        
-         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.125"
-            android:orientation="vertical" >
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#848887"
-                android:orientation="vertical" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" >
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_location" />
-
-                <EditText
-                    android:id="@+id/etArea"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@null"
-                    android:hint="@string/area"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:paddingLeft="8dp"
-                    android:singleLine="true"
-                    android:textColor="#282c2b"
-                    android:textColorHint="#000000" >
-                </EditText>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.125"
-            android:orientation="vertical" >
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#848887"
-                android:orientation="vertical" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" >
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_city" />
-
-                <EditText
-                    android:id="@+id/etCity"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@null"
-                    android:drawableRight="@drawable/ic_dropdown"
-                    android:editable="false"
-                    android:hint="@string/city"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:paddingLeft="8dp"
-                    android:singleLine="true"
-                    android:textColor="#282c2b"
-                    android:textColorHint="#000000" >
-                </EditText>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.125"
-            android:orientation="vertical" >
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#848887"
-                android:orientation="vertical" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" >
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_zipcode" />
-
-                <EditText
-                    android:id="@+id/etZipCode"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@null"
-                    android:hint="@string/zipcode"
-                    android:imeOptions="actionNext"
-                    android:inputType="phone"
-                    android:paddingLeft="8dp"
-                    android:singleLine="true"
-                    android:textColor="#282c2b"
-                    android:textColorHint="#000000" >
-                </EditText>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.125"
-            android:orientation="vertical" >
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#848887"
-                android:orientation="vertical" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" >
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_date" />
-
-                <EditText
-                    android:id="@+id/etDate"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@null"
-                    android:drawableRight="@drawable/ic_dropdown"
-                    android:editable="false"
-                    android:hint="@string/select_date"
-                    android:imeOptions="actionDone"
-                    android:inputType="text"
-                    android:paddingLeft="8dp"
-                    android:singleLine="true"
-                    android:textColor="#282c2b"
-                    android:textColorHint="#000000" >
-                </EditText>
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.08"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp" >
-
-        <Button
-            android:id="@+id/btnConfirm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_confirm"
-            android:onClick="OnConfirmClick"
-            android:text="CONFIRM"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+         </LinearLayout>
+  
 
 </LinearLayout>
