@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -24,18 +25,21 @@ import com.littleutil.BaseActivity;
 import com.littleutil.R;
 import com.littleutil.dialog.DialogAddress;
 import com.littleutil.dialog.DialogAddress.OnAddressSetListener;
+import com.littleutil.dialog.DialogDescription;
+import com.littleutil.dialog.DialogDescription.OnDescSetListener;
 import com.littleutil.network.HttpClient;
 
 public class RequestSubmitActivity extends BaseActivity {
 
-	private EditText etName, etEmail, etPhone, etPassword, etAddress, etCity, etZipCode, etDate,etArea;
+	private EditText etName, etEmail, etPhone, etPassword, etAddress, etCity, etZipCode, etDate,etArea,etDescription;
 	private ImageView ivBack;
 	private TextView tv_service_name;
-	private Button btnConfirm;
+	private Button btnConfirm,btnContinue;
 	private DatePicker datePicker;
 	private Calendar calendar;
 	private int year, month, day;
 	private String date, time,name;
+	private LinearLayout ll_part1,ll_part2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +56,34 @@ public class RequestSubmitActivity extends BaseActivity {
 		etCity = (EditText) findViewById(R.id.etCity);
 		etZipCode = (EditText) findViewById(R.id.etZipCode);
 		etDate = (EditText) findViewById(R.id.etDate);
+		etDescription = (EditText) findViewById(R.id.etDescription);
 		ivBack = (ImageView) findViewById(R.id.ivBack);
 		btnConfirm = (Button) findViewById(R.id.btnConfirm);
+		btnContinue  = (Button) findViewById(R.id.btnContinue);
+		ll_part1 = (LinearLayout)findViewById(R.id.ll_part1);
+		ll_part2 = (LinearLayout)findViewById(R.id.ll_part2);
 		calendar = Calendar.getInstance();
 
 		name = getIntent().getExtras().getString("name");
 		tv_service_name.setText(name);
+		btnContinue.setOnClickListener(this);
+		btnConfirm.setOnClickListener(this);
+		etDate.setKeyListener(null);
+		etAddress.setKeyListener(null);
+		etCity.setKeyListener(null);
+		
+		/*etDate.setEnabled(false);
+		etAddress.setEnabled(false);
+		etCity.setEnabled(false);*/
 		
 		etAddress.setOnClickListener(this);
+		etCity.setOnClickListener(this);
+		etDate.setOnClickListener(this);
 		ivBack.setOnClickListener(this);
+		etDescription.setOnClickListener(this);
+		
+		ll_part1.setVisibility(View.VISIBLE);
+		ll_part2.setVisibility(View.GONE);
 	}
 	public void OnConfirmClick() {
 
@@ -98,6 +121,25 @@ public class RequestSubmitActivity extends BaseActivity {
 				new ReqAsynctask().execute(createReq());
 			}
 			break;
+
+			
+		case R.id.btnContinue:
+			ll_part1.setVisibility(View.GONE);
+			ll_part2.setVisibility(View.VISIBLE);
+			break;
+			
+		case R.id.etDescription:
+			new DialogDescription(this, new OnDescSetListener() {
+				
+				@Override
+				public void onAddressSet(String desc) {
+					etDescription.setText(desc);
+					
+				}
+			}, etDescription.getText().toString().trim());
+			break;
+
+
 		}
 	}
 
@@ -146,7 +188,9 @@ public class RequestSubmitActivity extends BaseActivity {
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		if (id == 999) {
-			return new DatePickerDialog(this, myDateListener, year, month, day);
+			DatePickerDialog datePickerDialog = new DatePickerDialog(this, myDateListener, year, month, day);
+			datePickerDialog.setTitle("SET DATE");
+			return datePickerDialog;
 		}
 		return null;
 	}
@@ -193,6 +237,7 @@ public class RequestSubmitActivity extends BaseActivity {
 		jsonObject.put("area", etArea.getText().toString().trim());
 		jsonObject.put("city", etCity.getText().toString().trim());
 		jsonObject.put("appointment_date", etDate.getText().toString().trim());
+		jsonObject.put("desc", etDescription.getText().toString().trim());
 		jsonObject.put("service_id", "");
 		return jsonObject;
 		}catch(Exception e){
