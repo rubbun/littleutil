@@ -40,6 +40,7 @@ public class RequestSubmitActivity extends BaseActivity {
 	private int year, month, day;
 	private String date, time,name;
 	private LinearLayout ll_part1,ll_part2;
+	public boolean flag = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -173,7 +174,6 @@ public class RequestSubmitActivity extends BaseActivity {
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
             	time = selectedHour + ":" + selectedMinute;
             	
-            	
             	if(selectedHour>11){
             		etDate.setText( date + "  " + time+" PM");
             	}else{
@@ -188,9 +188,12 @@ public class RequestSubmitActivity extends BaseActivity {
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		if (id == 999) {
+			if(flag){
+				flag = false;
 			DatePickerDialog datePickerDialog = new DatePickerDialog(this, myDateListener, year, month, day);
 			datePickerDialog.setTitle("SET DATE");
 			return datePickerDialog;
+			}
 		}
 		return null;
 	}

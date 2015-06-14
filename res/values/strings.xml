@@ -8,10 +8,11 @@
     <string name="home_manager_text">I am \nyour \nHome\nManager</string>
     
     <string name="name">Your Name</string>
+    <string name="pincode">Pin Code</string>
     
     <string name="email">Email</string>
     
-    <string name="select_date">Select Date</string>
+    <string name="select_date">Select Date &amp; Time</string>
     
     <string name="zipcode">Zipcode</string>
     

@@ -452,7 +452,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="@null"
-                        android:hint="@string/name"
+                        android:hint="@string/pincode"
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:paddingLeft="8dp"
@@ -487,7 +487,7 @@
                         android:id="@+id/imageView2"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/ic_zipcode" />
+                        android:src="@drawable/description_icon" />
 
                     <EditText
                        android:id="@+id/etDescription"

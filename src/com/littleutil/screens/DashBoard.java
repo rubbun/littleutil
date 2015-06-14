@@ -66,13 +66,16 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 			@Override
 			public boolean onChildClick(ExpandableListView arg0, View arg1, int grouppos, int childpos, long arg4) {
 				
-				String id = serviceList.get(grouppos).getList().get(childpos).id;
-				String name = serviceList.get(grouppos).getList().get(childpos).name;
-				mIntent = new Intent(DashBoard.this,RequestSubmitActivity.class);
-				mIntent.putExtra("name", name);
-				mIntent.putExtra("id", id);
-				startActivity(mIntent);
-				slidingMenu.toggle();
+				String grp_name = serviceList.get(grouppos).service_name;
+				if(!grp_name.equalsIgnoreCase("Settings")){
+					String id = serviceList.get(grouppos).getList().get(childpos).id;
+					String name = serviceList.get(grouppos).getList().get(childpos).name;
+					mIntent = new Intent(DashBoard.this,RequestSubmitActivity.class);
+					mIntent.putExtra("name", name);
+					mIntent.putExtra("id", id);
+					startActivity(mIntent);
+					slidingMenu.toggle();
+				}
 				return false;
 			}
 		});
