@@ -25,7 +25,7 @@ public class SplashScreen extends BaseActivity{
 		serviceList.clear();
 		new FetchSubServices().execute();
 		
-		new Handler().postDelayed(new Runnable() {
+		/*new Handler().postDelayed(new Runnable() {
 			
 			@Override
 			public void run() {
@@ -33,10 +33,10 @@ public class SplashScreen extends BaseActivity{
 				startActivity(mIntent);
 				finish();
 			}
-		}, 6000);
+		}, 6000);*/
 	}
 	
-	public class FetchSubServices extends AsyncTask<Void, Void, Void>{
+	public class FetchSubServices extends AsyncTask<Void, Void, Boolean>{
 
 		@Override
 		protected void onPreExecute() {
@@ -44,7 +44,7 @@ public class SplashScreen extends BaseActivity{
 		}
 		
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected Boolean doInBackground(Void... params) {
 			try {
 				JSONObject obj = new JSONObject();
 				obj.put("id", "1");
@@ -67,6 +67,7 @@ public class SplashScreen extends BaseActivity{
 					JSONArray jarr = new JSONArray(response2);
 					arr[2] = jarr.toString();
 				}
+				return true;
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -74,8 +75,13 @@ public class SplashScreen extends BaseActivity{
 		}
 		
 		@Override
-		protected void onPostExecute(Void result) {
+		protected void onPostExecute(Boolean result) {
 			super.onPostExecute(result);
+			if(result){
+				mIntent = new Intent(SplashScreen.this,DashBoard.class);
+				startActivity(mIntent);
+				finish();
+			}
 		}
 	}
 }

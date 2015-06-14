@@ -1,9 +1,7 @@
 package com.littleutil.screens;
 
 import java.util.Calendar;
-
 import org.json.JSONObject;
-
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -64,7 +62,6 @@ public class RequestSubmitActivity extends BaseActivity {
 		etAddress.setOnClickListener(this);
 		ivBack.setOnClickListener(this);
 	}
-
 	public void OnConfirmClick() {
 
 	}
@@ -78,7 +75,6 @@ public class RequestSubmitActivity extends BaseActivity {
 				@Override
 				public void onAddressSet(String address) {
 					etAddress.setText(address);
-
 				}
 			}, etAddress.getText().toString().trim());
 			break;
@@ -102,7 +98,6 @@ public class RequestSubmitActivity extends BaseActivity {
 				new ReqAsynctask().execute(createReq());
 			}
 			break;
-
 		}
 	}
 
@@ -116,7 +111,6 @@ public class RequestSubmitActivity extends BaseActivity {
 		menu.add(0, 1, 0, "Chennai");
 		menu.add(0, 1, 0, "Hyderabad");
 		menu.add(0, 1, 0, "Mumbai");
-
 	}
 
 	@Override
