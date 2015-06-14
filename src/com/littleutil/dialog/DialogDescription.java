@@ -4,26 +4,25 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.littleutil.BaseActivity;
 import com.littleutil.R;
 
-public class DialogAddress {
+public class DialogDescription {
 	
-	public interface OnAddressSetListener{
-		public void onAddressSet(String address);
+	public interface OnDescSetListener{
+		public void onAddressSet(String desc);
 	}
 	
-	private EditText etAddress;
+	private EditText editText;
 	
-	public DialogAddress(final BaseActivity baseActivity,final OnAddressSetListener listener, String address) {
+	public DialogDescription(final BaseActivity baseActivity,final OnDescSetListener listener, String desc) {
 		
-		View view = View.inflate(baseActivity, R.layout.custom_address, null);
-		etAddress = (EditText)view.findViewById(R.id.etAddress);
-		etAddress.setText(address);
+		View view = View.inflate(baseActivity, R.layout.custom_desctiption, null);
+		editText = (EditText)view.findViewById(R.id.etDesc);
+		editText.setText(desc);
 		new AlertDialog.Builder(baseActivity)
-		.setTitle("Insert Your Address")
+		.setTitle("Enter Desription")
 		.setCancelable(false)
 		.setView(view)
 		.setPositiveButton("Done", new DialogInterface.OnClickListener() {
@@ -31,7 +30,7 @@ public class DialogAddress {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
-				listener.onAddressSet(etAddress.getText().toString().trim());
+				listener.onAddressSet(editText.getText().toString().trim());
 				
 				
 				
@@ -42,7 +41,7 @@ public class DialogAddress {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
-				listener.onAddressSet(etAddress.getText().toString().trim());
+				listener.onAddressSet(editText.getText().toString().trim());
 				
 			}
 		})
