@@ -73,7 +73,7 @@
             <LinearLayout
                 android:id="@+id/ll_home_service"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="70dp"
                 android:background="@drawable/home_servicebg"
                 android:gravity="center"
                 android:orientation="vertical" >
@@ -83,6 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Home Services"
+                    android:textSize="27sp"
                     android:textColor="@android:color/white"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>
@@ -90,7 +91,7 @@
             <LinearLayout
                 android:id="@+id/ll_general_service"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="70dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/general_servicebg"
                 android:gravity="center"
@@ -100,6 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="General Services"
+                    android:textSize="27sp"
                     android:textColor="@android:color/white"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>
@@ -107,7 +109,7 @@
             <LinearLayout
                 android:id="@+id/ll_billing_service"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="70dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/billing_servicebg"
                 android:gravity="center"
@@ -117,6 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Billing Services"
+                    android:textSize="27sp"
                     android:textColor="@android:color/white"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>

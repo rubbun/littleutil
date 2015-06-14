@@ -77,6 +77,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			convertView = infalInflater.inflate(R.layout.root_service, null);
 		}
 
+		ImageView iv_grp_img = (ImageView)convertView.findViewById(R.id.iv_grp_img);
+		if (isExpanded) {
+			iv_grp_img.setImageResource(R.drawable.list_indicator);
+        } else {
+        	iv_grp_img.setImageResource(R.drawable.group_indicator_plus);
+        }
+
 		TextView lblListHeader = (TextView) convertView.findViewById(R.id.tv_root_name);
 		lblListHeader.setText(list.get(groupPosition).service_name);
 

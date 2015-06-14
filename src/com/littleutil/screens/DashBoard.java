@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -60,6 +61,22 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 		    }
 		});
 		
+		expandableListView1.setOnChildClickListener(new OnChildClickListener() {
+			
+			@Override
+			public boolean onChildClick(ExpandableListView arg0, View arg1, int grouppos, int childpos, long arg4) {
+				
+				String id = serviceList.get(grouppos).getList().get(childpos).id;
+				String name = serviceList.get(grouppos).getList().get(childpos).name;
+				mIntent = new Intent(DashBoard.this,RequestSubmitActivity.class);
+				mIntent.putExtra("name", name);
+				mIntent.putExtra("id", id);
+				startActivity(mIntent);
+				slidingMenu.toggle();
+				return false;
+			}
+		});
+		
 		ll_home_service = (LinearLayout)findViewById(R.id.ll_home_service);
 		ll_general_service = (LinearLayout)findViewById(R.id.ll_general_service);
 		ll_billing_service = (LinearLayout)findViewById(R.id.ll_billing_service);
@@ -82,9 +99,6 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 		ll_general_service.setOnClickListener(this);
 		ll_home_service.setOnClickListener(this);
 	
-		System.out.println("!!size1:"+arr[0]);
-		System.out.println("!!size2:"+arr[1]);
-		System.out.println("!!size3:"+arr[2]);
 		createList();
 	}
 
