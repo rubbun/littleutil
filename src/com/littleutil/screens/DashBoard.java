@@ -6,33 +6,49 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AutoCompleteTextView;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.littleutil.BaseActivity;
 import com.littleutil.R;
 import com.littleutil.adapter.ExpandableListAdapter;
+import com.littleutil.adapter.MemberAdapter;
 import com.littleutil.bean.ServiceBean;
 import com.littleutil.bean.SubServiceBean;
 
 public class DashBoard extends BaseActivity implements OnClickListener{
 
 	private Intent mIntent;
+	private Dialog dialog;
+	private MemberAdapter memberadapter;
 	private int lastExpandedPosition = -1;
 	private ExpandableListView expandableListView1;
 	private ExpandableListAdapter adapter;
 	public SlidingMenu slidingMenu;
+	private AutoCompleteTextView ll_dialog_search;
 	private ImageView iv_menu,iv_search,iv_whatsapp,iv_call;
 	private LinearLayout ll_home_service,ll_general_service,ll_billing_service;
+	private ArrayList<SubServiceBean> listItem = new ArrayList<SubServiceBean>();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +134,7 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 			break;
 			
 		case R.id.iv_search:
-			slidingMenu.toggle();
+			openSearchpage();
 			break;
 		
 		case R.id.iv_call:
@@ -175,5 +191,71 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 		}
 		adapter = new ExpandableListAdapter(DashBoard.this, serviceList);
 		expandableListView1.setAdapter(adapter);
+	}
+	
+	public void openSearchpage() {
+		dialog = new Dialog(DashBoard.this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+		dialog.setContentView(R.layout.dialog_member);
+		dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+		final ListView lv_dialog_members = (ListView) dialog.findViewById(R.id.lv_dialog_members);
+		ll_dialog_search = (AutoCompleteTextView) dialog.findViewById(R.id.ll_dialog_search);
+
+		ll_dialog_search.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+
+				// search(cs.toString());
+				String searchString = ll_dialog_search.getText().toString();
+				if (searchString.length() > 0) {
+					int textLength = searchString.length();
+					listItem.clear();
+					for (int i = 1; i < serviceList.size(); i++) {
+						for(int j = 0 ; j < serviceList.get(i).getList().size(); j ++){
+							String retailerName = serviceList.get(i).getList().get(j).getName();
+							if (textLength <= retailerName.length()) {
+								if (retailerName.toLowerCase().contains(searchString.toLowerCase())) {
+									listItem.add(serviceList.get(i).getList().get(j));								
+								}
+							}
+						}
+					}
+					memberadapter = new MemberAdapter(DashBoard.this, R.layout.row_member, listItem);
+					lv_dialog_members.setAdapter(memberadapter);
+					lv_dialog_members.setFastScrollEnabled(false);
+				} else {
+					lv_dialog_members.setAdapter(null);
+				}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable arg0) {
+
+			}
+		});
+
+		lv_dialog_members.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+					String id = listItem.get(arg2).id;
+					String name = listItem.get(arg2).name;
+					mIntent = new Intent(DashBoard.this,RequestSubmitActivity.class);
+					mIntent.putExtra("name", name);
+					mIntent.putExtra("id", id);
+					startActivity(mIntent);
+					dialog.cancel();
+				}
+		});
+		dialog.show();
 	}
 }
