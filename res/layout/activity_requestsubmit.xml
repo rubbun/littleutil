@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_bg"
+    android:background="@drawable/sub_survice_bg"
     android:orientation="vertical"
     tools:ignore="DuplicateIds" >
 
@@ -30,15 +30,14 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </LinearLayout>
-    <!--  PART 1 START -->
+    <!-- PART 1 START -->
 
     <LinearLayout
         android:id="@+id/ll_part1"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone"
-        >
+        android:visibility="gone" >
 
         <LinearLayout
             android:id="@+id/ll_1"
@@ -278,48 +277,6 @@
                         android:id="@+id/imageView2"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/ic_location" />
-
-                    <EditText
-                        android:id="@+id/etArea"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:background="@null"
-                        android:hint="@string/area"
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:paddingLeft="8dp"
-                        android:singleLine="true"
-                        android:textColor="#282c2b"
-                        android:textColorHint="#000000" >
-                    </EditText>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.125"
-                android:orientation="vertical" >
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#848887"
-                    android:orientation="vertical" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="fill_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp" >
-
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
                         android:src="@drawable/ic_city" />
 
                     <EditText
@@ -364,18 +321,18 @@
                         android:id="@+id/imageView2"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/ic_date" />
+                        android:src="@drawable/ic_location" />
 
                     <EditText
-                        android:id="@+id/etDate"
+                        android:id="@+id/etArea"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="@null"
+                        android:hint="@string/area"
+                        android:imeOptions="actionNext"
                         android:drawableRight="@drawable/ic_dropdown"
-                        android:editable="false"
-                        android:hint="@string/select_date"
-                        android:imeOptions="actionDone"
                         android:inputType="text"
+                        android:editable="false"
                         android:paddingLeft="8dp"
                         android:singleLine="true"
                         android:textColor="#282c2b"
@@ -408,10 +365,11 @@
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
- <!--  PART 1 END -->
- <!--  PART 2 START -->
-  <LinearLayout
-      android:id="@+id/ll_part2"
+    <!-- PART 1 END -->
+    <!-- PART 2 START -->
+
+    <LinearLayout
+        android:id="@+id/ll_part2"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -430,7 +388,94 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.125"
+                android:layout_weight="0.140"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_date" />
+
+                    <EditText
+                        android:id="@+id/etDate"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@null"
+                        android:drawableRight="@drawable/ic_dropdown"
+                        android:editable="false"
+                        android:hint="@string/select_date"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:paddingLeft="8dp"
+                        android:singleLine="true"
+                        android:textColor="#282c2b"
+                        android:textColorHint="#000000" >
+                    </EditText>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#848887"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.140"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_date" />
+
+                    <EditText
+                        android:id="@+id/etTime"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@null"
+                        android:drawableRight="@drawable/ic_dropdown"
+                        android:editable="false"
+                        android:hint="@string/select_time"
+                        android:imeOptions="actionNext"
+                        android:paddingLeft="8dp"
+                        android:singleLine="true"
+                        android:textColor="#282c2b"
+                        android:textColorHint="#000000" >
+                    </EditText>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#848887"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.140"
                 android:orientation="vertical" >
 
                 <LinearLayout
@@ -448,13 +493,13 @@
                         android:src="@drawable/ic_zipcode" />
 
                     <EditText
-                       android:id="@+id/etZipCode"
+                        android:id="@+id/etZipCode"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="@null"
                         android:hint="@string/pincode"
                         android:imeOptions="actionNext"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:paddingLeft="8dp"
                         android:singleLine="true"
                         android:textColor="#282c2b"
@@ -466,7 +511,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.125"
+                android:layout_weight="0.140"
                 android:orientation="vertical" >
 
                 <View
@@ -490,14 +535,14 @@
                         android:src="@drawable/description_icon" />
 
                     <EditText
-                       android:id="@+id/etDescription"
+                        android:id="@+id/etDescription"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="@null"
                         android:hint="@string/description"
                         android:imeOptions="actionDone"
-                        android:paddingLeft="8dp"
                         android:inputType="text"
+                        android:paddingLeft="8dp"
                         android:singleLine="true"
                         android:textColor="#282c2b"
                         android:textColorHint="#000000" >
@@ -523,8 +568,8 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingLeft="10dp"
-                    android:visibility="invisible"
-                    android:paddingRight="10dp" >
+                    android:paddingRight="10dp"
+                    android:visibility="invisible" >
 
                     <ImageView
                         android:id="@+id/imageView2"
@@ -533,7 +578,6 @@
                         android:src="@drawable/ic_mobile" />
 
                     <EditText
-                       
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="@null"
@@ -552,8 +596,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.125"
-                android:visibility="invisible"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:visibility="invisible" >
 
                 <View
                     android:layout_width="match_parent"
@@ -576,7 +620,6 @@
                         android:src="@drawable/ic_password" />
 
                     <EditText
-                       
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="@null"
@@ -595,8 +638,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.125"
-                android:visibility="invisible"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:visibility="invisible" >
 
                 <View
                     android:layout_width="match_parent"
@@ -619,7 +662,6 @@
                         android:src="@drawable/ic_location" />
 
                     <EditText
-                        
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="@null"
@@ -638,8 +680,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.125"
-                android:visibility="invisible"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:visibility="invisible" >
 
                 <View
                     android:layout_width="match_parent"
@@ -662,7 +704,6 @@
                         android:src="@drawable/ic_location" />
 
                     <EditText
-                       
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="@null"
@@ -681,8 +722,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.125"
-                android:visibility="invisible"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:visibility="invisible" >
 
                 <View
                     android:layout_width="match_parent"
@@ -696,7 +737,6 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingLeft="10dp"
-                    
                     android:paddingRight="10dp" >
 
                     <ImageView
@@ -706,7 +746,6 @@
                         android:src="@drawable/ic_city" />
 
                     <EditText
-                       
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="@null"
@@ -727,8 +766,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.125"
-                 android:visibility="invisible"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:visibility="invisible" >
 
                 <View
                     android:layout_width="match_parent"
@@ -742,7 +781,6 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingLeft="10dp"
-                   
                     android:paddingRight="10dp" >
 
                     <ImageView
@@ -752,7 +790,6 @@
                         android:src="@drawable/ic_date" />
 
                     <EditText
-                        
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="@null"
@@ -793,5 +830,6 @@
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
- <!--  PART 2 END -->
+    <!-- PART 2 END -->
+
 </LinearLayout>

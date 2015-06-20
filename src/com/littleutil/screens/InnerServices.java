@@ -33,7 +33,7 @@ public class InnerServices extends BaseActivity{
 	private MemberAdapter memberadapter;
 	private int id;
 	private ImageView iv_search,iv_whatsapp,ivBack;
-	private GridView gridView1;
+	private ListView ll_service_list;
 	private SubServiceAdapter adapter;
 	private ArrayList<SubServiceBean> listItem = new ArrayList<SubServiceBean>();
 	private ArrayList<SubServiceBean> list = new ArrayList<SubServiceBean>();
@@ -53,10 +53,10 @@ public class InnerServices extends BaseActivity{
 		iv_whatsapp.setOnClickListener(this);
 		ivBack.setOnClickListener(this);
 		
-		gridView1 = (GridView)findViewById(R.id.gridView1);
+		ll_service_list = (ListView)findViewById(R.id.ll_service_list);
 		setInnerServiceList(id);
 		
-		gridView1.setOnItemClickListener(new OnItemClickListener() {
+		ll_service_list.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int pos, long arg3) {
@@ -73,7 +73,7 @@ public class InnerServices extends BaseActivity{
 	private void setInnerServiceList(int id2) {
 		list = serviceList.get(id2).getList();
 		adapter = new SubServiceAdapter(InnerServices.this, R.layout.sub_service_row, list);
-		gridView1.setAdapter(adapter);
+		ll_service_list.setAdapter(adapter);
 	}
 
 	@Override

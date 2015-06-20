@@ -8,10 +8,12 @@ import org.json.JSONObject;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -91,6 +93,12 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 					mIntent.putExtra("id", id);
 					startActivity(mIntent);
 					slidingMenu.toggle();
+				}else if(serviceList.get(grouppos).getList().get(childpos).name.equalsIgnoreCase("Track Your status")){
+					slidingMenu.toggle();
+					String child_name = serviceList.get(grouppos).getList().get(childpos).name;
+					mIntent = new Intent(DashBoard.this,TrackStatus.class);
+					mIntent.putExtra("name", child_name);
+					startActivity(mIntent);
 				}
 				return false;
 			}
@@ -131,6 +139,7 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 		case R.id.iv_whatsapp:
 			mIntent = getPackageManager().getLaunchIntentForPackage("com.whatsapp");;
 			startActivity(mIntent);
+			//openWhatsApp("9674216123@s.whatsapp.net");
 			break;
 			
 		case R.id.iv_search:
@@ -179,7 +188,7 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 							object.getString("path")));
 				}
 				if(i == 0){
-					serviceList.add(new ServiceBean("Hotel Service", "1", list));
+					serviceList.add(new ServiceBean("Home Service", "1", list));
 				}else if(i == 1){
 					serviceList.add(new ServiceBean("General Service", "2", list));
 				}else if(i == 2){
@@ -258,4 +267,16 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 		});
 		dialog.show();
 	}
+	
+	private void openWhatsApp(String id) {
+
+		Cursor c = getContentResolver().query(ContactsContract.Data.CONTENT_URI,
+		        new String[] { ContactsContract.Contacts.Data._ID }, ContactsContract.Data.DATA1 + "=?",
+		        new String[] { id }, null);
+		c.moveToFirst();
+		Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("content://com.android.contacts/data/" + c.getString(0)));
+		startActivity(i);
+		c.close();
+		
+		}
 }

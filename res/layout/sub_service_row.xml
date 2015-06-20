@@ -2,24 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-     >
+    android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="175dp"
-        android:layout_height="140dp"
-        android:orientation="vertical"
-        android:padding="5dp"
-        android:weightSum="1"
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/sub_survice_bg"
         android:gravity="center"
-        android:background="@drawable/sub_survice_bg" >
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="1" >
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".40"
             android:gravity="center"
-            android:padding="15dp"
-            android:layout_weight=".67" >
+            android:padding="15dp" >
 
             <ImageView
                 android:id="@+id/iv_service"
@@ -28,23 +27,22 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_launcher" />
-
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center|top"
-            android:layout_weight=".33" >
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight=".60"
+            android:gravity="center" >
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Medium Text"
                 android:gravity="center"
-                android:textColor="#0d0e10"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#0d0e10" />
         </LinearLayout>
     </LinearLayout>
 

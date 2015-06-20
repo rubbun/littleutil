@@ -32,8 +32,6 @@ public class DialogDescription {
 				dialog.dismiss();
 				listener.onAddressSet(editText.getText().toString().trim());
 				
-				
-				
 			}
 		})
 		.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
