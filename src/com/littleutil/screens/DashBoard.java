@@ -29,6 +29,7 @@ import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.littleutil.BaseActivity;
@@ -94,11 +95,16 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 					startActivity(mIntent);
 					slidingMenu.toggle();
 				}else if(serviceList.get(grouppos).getList().get(childpos).name.equalsIgnoreCase("Track Your status")){
-					slidingMenu.toggle();
-					String child_name = serviceList.get(grouppos).getList().get(childpos).name;
-					mIntent = new Intent(DashBoard.this,TrackStatus.class);
-					mIntent.putExtra("name", child_name);
-					startActivity(mIntent);
+					if(app.getUserinfo().getMobile_no().length() >0){
+						slidingMenu.toggle();
+						String child_name = serviceList.get(grouppos).getList().get(childpos).name;
+						mIntent = new Intent(DashBoard.this,TrackStatus.class);
+						mIntent.putExtra("name", child_name);
+						startActivity(mIntent);
+					}else{
+						Toast.makeText(getApplicationContext(), "You don't have make any request till now..", Toast.LENGTH_LONG).show();
+					}
+					
 				}
 				return false;
 			}

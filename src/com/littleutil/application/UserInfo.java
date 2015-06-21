@@ -6,30 +6,30 @@ import android.content.SharedPreferences.Editor;
 import com.littleutil.constant.Constants;
 
 public class UserInfo {
-	public String name = null;
-	public String email = null;
-	public String mobile_no = null;
-	public String password = null;
-	public String area = null;
-	public String city = null;
-	public String address = null;
-	public String pincode = null;
-	public String description = null;	
+	public String name = "";
+	public String email = "";
+	public String mobile_no = "";
+	public String password = "";
+	public String area = "";
+	public String city = "";
+	public String address = "";
+	public String pincode = "";
+	public String description = "";	
 	public boolean session = false;
 	
-	public SharedPreferences preference = null;
+	public SharedPreferences preference;
 	
 	public UserInfo(Context ctx){
 		
 		preference = ctx.getSharedPreferences(Constants.values.USRINFO.name(), Context.MODE_PRIVATE);
-		name = preference.getString(Constants.values.NAME.name(), null);
-		email = preference.getString(Constants.values.EMAIL.name(), null);
-		mobile_no = preference.getString(Constants.values.MOBILE_NO.name(), null);		
-		password = preference.getString(Constants.values.PASSWORD.name(), null);
-		area = preference.getString(Constants.values.AREA.name(), null);
-		city = preference.getString(Constants.values.CITY.name(), null);
-		pincode = preference.getString(Constants.values.PINCODE.name(), null);
-		description = preference.getString(Constants.values.DESCRIPTION.name(), null);
+		name = preference.getString(Constants.values.NAME.name(), "");
+		email = preference.getString(Constants.values.EMAIL.name(), "");
+		mobile_no = preference.getString(Constants.values.MOBILE_NO.name(), "");		
+		password = preference.getString(Constants.values.PASSWORD.name(), "");
+		area = preference.getString(Constants.values.AREA.name(), "");
+		city = preference.getString(Constants.values.CITY.name(), "");
+		pincode = preference.getString(Constants.values.PINCODE.name(), "");
+		description = preference.getString(Constants.values.DESCRIPTION.name(), "");
 		session =  preference.getBoolean(Constants.values.SESSION.name(), false);
 		
 	}
@@ -66,7 +66,7 @@ public class UserInfo {
 	}
 
 	public String getUser_id() {
-		return preference.getString(Constants.values.USERID.name(), null);
+		return preference.getString(Constants.values.USERID.name(), "");
 	}
 
 	public void setUser_id(String user_id) {
@@ -76,7 +76,7 @@ public class UserInfo {
 	}
 
 	public String getName() {
-		return preference.getString(Constants.values.NAME.name(), null);
+		return preference.getString(Constants.values.NAME.name(), "");
 	}
 
 	public void setName(String name) {
@@ -87,7 +87,7 @@ public class UserInfo {
 	}
 
 	public String getEmail() {
-		return preference.getString(Constants.values.EMAIL.name(), null);
+		return preference.getString(Constants.values.EMAIL.name(), "");
 	}
 
 	public void setEmail(String email) {
@@ -98,7 +98,7 @@ public class UserInfo {
 	}
 
 	public String getMobile_no() {
-		return preference.getString(Constants.values.MOBILE_NO.name(), null);
+		return preference.getString(Constants.values.MOBILE_NO.name(), "");
 	}
 
 	public void setMobile_no(String mobile_no) {
@@ -109,7 +109,7 @@ public class UserInfo {
 	}
 
 	public String getPassword() {
-		return preference.getString(Constants.values.PASSWORD.name(), null);
+		return preference.getString(Constants.values.PASSWORD.name(), "");
 	}
 
 	public void setPassword(String password) {
@@ -120,7 +120,7 @@ public class UserInfo {
 	}
 
 	public String getArea() {
-		return preference.getString(Constants.values.AREA.name(), null);
+		return preference.getString(Constants.values.AREA.name(), "");
 	}
 
 	public void setArea(String area) {
@@ -131,7 +131,7 @@ public class UserInfo {
 	}
 
 	public String getCity() {
-		return preference.getString(Constants.values.CITY.name(), null);
+		return preference.getString(Constants.values.CITY.name(), "");
 	}
 
 	public void setCity(String city) {
@@ -144,7 +144,7 @@ public class UserInfo {
 	
 
 	public String getPincode() {
-		return preference.getString(Constants.values.PINCODE.name(), null);
+		return preference.getString(Constants.values.PINCODE.name(), "");
 	}
 
 	public void setPincode(String pincode) {

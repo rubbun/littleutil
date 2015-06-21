@@ -55,10 +55,13 @@ public class SplashScreen extends BaseActivity {
 			try {
 				JSONObject obj = new JSONObject();
 				obj.put("id", "1");
+				obj.put("type", "android");
 				JSONObject obj1 = new JSONObject();
 				obj1.put("id", "2");
+				obj1.put("type", "android");
 				JSONObject obj2 = new JSONObject();
 				obj2.put("id", "3");
+				obj2.put("type", "android");
 				String response = HttpClient.SendHttpPost(Constants.FETCH_SUBERVICES, obj.toString());
 				String response1 = HttpClient.SendHttpPost(Constants.FETCH_SUBERVICES, obj1.toString());
 				String response2 = HttpClient.SendHttpPost(Constants.FETCH_SUBERVICES, obj2.toString());

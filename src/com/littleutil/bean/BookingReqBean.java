@@ -3,6 +3,19 @@ package com.littleutil.bean;
 public class BookingReqBean {
 
 	public String orderId, orderDate, orderTime, status, agentName, agentId, description = "";
+	
+	
+
+	public BookingReqBean(String orderId, String orderDate, String orderTime, String status, String agentName, String agentId, String description) {
+		super();
+		this.orderId = orderId;
+		this.orderDate = orderDate;
+		this.orderTime = orderTime;
+		this.status = status;
+		this.agentName = agentName;
+		this.agentId = agentId;
+		this.description = description;
+	}
 
 	public String getOrderId() {
 		return orderId;
