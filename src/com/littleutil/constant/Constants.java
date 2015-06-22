@@ -7,6 +7,7 @@ public class Constants {
 	public static String FETCH_SUBERVICES = BASE_URL + "api/findServiceNameImageByID";
 	public static String SUBMIT_REQUEST = BASE_URL + "api/addRequest";
 	public static String ALL_BOOKINGINFO_REQUEST = BASE_URL + "api/findTrackServicesByContactNo";
+	public static String LATEST_USER_INFO = BASE_URL + "api/findLatestTrackServicesByContactNo";
 	
 	public enum values {
 		USRINFO, USERID, NAME, EMAIL,DESCRIPTION, MOBILE_NO, PASSWORD, AREA, CITY, COUNTRY, PINCODE,ADDRESS, SESSION

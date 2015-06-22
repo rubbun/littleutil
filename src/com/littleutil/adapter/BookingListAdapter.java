@@ -57,9 +57,9 @@ public class BookingListAdapter extends ArrayAdapter<BookingReqBean>{
 		final BookingReqBean member = item.get(position);
 
 		if (member != null) {
-			mHolder.tvOrderId.setText(member.getOrderId());
-			mHolder.tvOrderdate.setText(member.getOrderDate());
-			mHolder.tvStatus.setText(member.getStatus());
+			mHolder.tvOrderId.setText(member.getID());
+			mHolder.tvOrderdate.setText(member.getREQUEST_DATE());
+			mHolder.tvStatus.setText(member.getSTATUS());
 		}
 		return v;
 	}

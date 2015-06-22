@@ -1,7 +1,10 @@
 package com.littleutil.screens;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.AlertDialog;
@@ -24,6 +27,8 @@ import android.widget.Toast;
 
 import com.littleutil.BaseActivity;
 import com.littleutil.R;
+import com.littleutil.adapter.BookingListAdapter;
+import com.littleutil.bean.BookingReqBean;
 import com.littleutil.constant.Constants;
 import com.littleutil.dialog.DialogAddress;
 import com.littleutil.dialog.DialogAddress.OnAddressSetListener;
@@ -43,6 +48,7 @@ public class RequestSubmitActivity extends BaseActivity {
 	private String date, time, name, service_id;
 	private LinearLayout ll_part1, ll_part2;
 	public boolean flag = true;
+	private ArrayList<BookingReqBean> list = new ArrayList<BookingReqBean>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +99,9 @@ public class RequestSubmitActivity extends BaseActivity {
 		ll_part1.setVisibility(View.VISIBLE);
 		ll_part2.setVisibility(View.GONE);
 
+		if(app.getUserinfo().getMobile_no().length()>0){
+			new getUserBookingInfo().execute();
+		}
 		setCurrentDate();
 	}
 
@@ -313,6 +322,53 @@ public class RequestSubmitActivity extends BaseActivity {
 			ll_part2.setVisibility(View.GONE);
 		} else if (ll_part1.getVisibility() == View.VISIBLE) {
 			finish();
+		}
+	}
+	
+	public class getUserBookingInfo extends AsyncTask<Void, Void, JSONObject>{
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			doShowLoading();
+		}
+		
+		@Override
+		protected JSONObject doInBackground(Void... params) {
+			JSONObject ob = new JSONObject();
+			try {
+				ob.put("phone_number", app.getUserinfo().getMobile_no());
+				String response = HttpClient.SendHttpPost(Constants.LATEST_USER_INFO, ob.toString());
+				if (response != null) {
+					JSONObject object = new JSONObject(response);
+					JSONObject arr = object.getJSONObject("track");
+					return arr;
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(JSONObject result) {
+			super.onPostExecute(result);
+			doRemoveLoading();
+			if(result != null){
+				try {
+					etName.setText(result.getString("NAME"));
+					etEmail.setText(result.getString("EMAIL"));
+					etPhone.setText(result.getString("MOBILE"));
+					etAddress.setText(result.getString("ADDRESS1"));
+					etArea.setText(result.getString("AREA1"));
+					etCity.setText(result.getString("CITY1"));
+					
+					etZipCode.setText(result.getString("PIN"));
+					etPassword.setText(result.getString("PASSWORD"));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 }

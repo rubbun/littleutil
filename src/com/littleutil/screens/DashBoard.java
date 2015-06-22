@@ -180,7 +180,6 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 	private void createList() {
 		ArrayList<SubServiceBean> list1 = new ArrayList<SubServiceBean>();
 		list1.add(new SubServiceBean("1", "Track Your status", ""));
-		list1.add(new SubServiceBean("2", "Change your password", ""));
 		serviceList.add(new ServiceBean("Settings", "0", list1));
 		for(int i= 0 ; i <arr.length; i++){
 			ArrayList<SubServiceBean> list = new ArrayList<SubServiceBean>();
