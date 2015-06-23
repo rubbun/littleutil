@@ -6,12 +6,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -58,7 +66,7 @@ public class TrackStatus extends BaseActivity {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				
+				ShowDetaildialog(list.get(arg2));
 			}
 		});
 		
@@ -116,7 +124,8 @@ public class TrackStatus extends BaseActivity {
 								obj.getString("INTER_FEEDBACK"),
 								obj.getString("APPOINTMENT_DATE"),
 								obj.getString("APPOINTMENT_TIME"),
-								obj.getString("AGENT_NAME")
+								obj.getString("AGENT_NAME"),
+								obj.getString("Service_name")
 								
 								));
 					}
@@ -144,5 +153,50 @@ public class TrackStatus extends BaseActivity {
 			finish();
 			break;
 		}
+	}
+	
+	public void ShowDetaildialog(BookingReqBean bookingReqBean){
+		final Dialog dialog = new Dialog(TrackStatus.this);
+		dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.dialog_version);
+		
+		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+	    lp.copyFrom(dialog.getWindow().getAttributes());
+	    lp.width = LayoutParams.MATCH_PARENT;
+	    lp.height = LayoutParams.MATCH_PARENT;
+	    dialog.getWindow().setAttributes(lp);
+		
+		TextView tv_order_id = (TextView)dialog.findViewById(R.id.tv_order_id);
+		tv_order_id.setText(bookingReqBean.getID());
+		
+		TextView tv_order_date = (TextView)dialog.findViewById(R.id.tv_order_date);
+		tv_order_date.setText(bookingReqBean.getREQUEST_DATE());
+		
+		TextView tv_service_name = (TextView)dialog.findViewById(R.id.tv_service_name);
+		tv_service_name.setText(bookingReqBean.getService_name());
+				
+		TextView tv_agent_name = (TextView)dialog.findViewById(R.id.tv_agent_name);
+		tv_agent_name.setText(bookingReqBean.getAGENT_NAME());
+		
+		TextView tv_apponit_date = (TextView)dialog.findViewById(R.id.tv_apponit_date);
+		tv_apponit_date.setText(bookingReqBean.getAPPOINTMENT_DATE());
+		
+		TextView tv_apponit_time = (TextView)dialog.findViewById(R.id.tv_apponit_time);
+		tv_apponit_time.setText(bookingReqBean.getAPPOINTMENT_TIME());
+		
+		TextView tv_status = (TextView)dialog.findViewById(R.id.tv_status);
+		tv_status.setText(bookingReqBean.getSTATUS());
+		
+		Button btn_ok = (Button)dialog.findViewById(R.id.btn_ok);
+		btn_ok.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dialog.cancel();
+			}
+		});
+		
+		dialog.show();
 	}
 }

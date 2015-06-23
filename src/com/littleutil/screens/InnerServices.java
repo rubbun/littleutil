@@ -80,7 +80,11 @@ public class InnerServices extends BaseActivity{
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
 		case R.id.iv_whatsapp:
-			mIntent = getPackageManager().getLaunchIntentForPackage("com.whatsapp");;
+			mIntent = new Intent();
+			mIntent.setAction(Intent.ACTION_SEND);
+			mIntent.putExtra(Intent.EXTRA_TEXT, "Hello, i want to Book a service.");
+			mIntent.setType("text/plain");
+			mIntent.setPackage("com.whatsapp");
 			startActivity(mIntent);
 			break;
 			

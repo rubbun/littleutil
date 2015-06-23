@@ -7,7 +7,9 @@ public class BookingReqBean {
 	REQUEST_DATE,CLOSE_DATE,Agent_ID,COST,VENDOR_SERCHARGE,CUS_FEEDBACK,CUS_DESC,
 	LABOR_COST,MATERIAL_COST,COMMISION,INTER_FEEDBACK,APPOINTMENT_DATE,APPOINTMENT_TIME,AGENT_NAME;
 
-	public BookingReqBean(String cUS_ID, String nAME, String eMAIL, String mOBILE, String aDDRESS1, String aREA1, String cITY1, String sTATE1, String aDDRESS2, String aREA2, String cITY2, String sTATE2, String pIN, String pASSWORD, String iD, String sERVICE_NO, String sTATUS, String rEQUEST_DATE, String cLOSE_DATE, String agent_ID, String cOST, String vENDOR_SERCHARGE, String cUS_FEEDBACK, String cUS_DESC, String lABOR_COST, String mATERIAL_COST, String cOMMISION, String iNTER_FEEDBACK, String aPPOINTMENT_DATE, String aPPOINTMENT_TIME, String aGENT_NAME) {
+	public String Service_name;
+	
+	public BookingReqBean(String cUS_ID, String nAME, String eMAIL, String mOBILE, String aDDRESS1, String aREA1, String cITY1, String sTATE1, String aDDRESS2, String aREA2, String cITY2, String sTATE2, String pIN, String pASSWORD, String iD, String sERVICE_NO, String sTATUS, String rEQUEST_DATE, String cLOSE_DATE, String agent_ID, String cOST, String vENDOR_SERCHARGE, String cUS_FEEDBACK, String cUS_DESC, String lABOR_COST, String mATERIAL_COST, String cOMMISION, String iNTER_FEEDBACK, String aPPOINTMENT_DATE, String aPPOINTMENT_TIME, String aGENT_NAME,String Service_name) {
 		super();
 		CUS_ID = cUS_ID;
 		NAME = nAME;
@@ -40,7 +42,20 @@ public class BookingReqBean {
 		APPOINTMENT_DATE = aPPOINTMENT_DATE;
 		APPOINTMENT_TIME = aPPOINTMENT_TIME;
 		AGENT_NAME = aGENT_NAME;
+		this.Service_name = Service_name;
 	}
+	
+	public String getService_name() {
+		return Service_name;
+	}
+
+
+
+	public void setService_name(String service_name) {
+		Service_name = service_name;
+	}
+
+
 
 	public String getCUS_ID() {
 		return CUS_ID;

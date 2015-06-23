@@ -143,9 +143,15 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 			break;
 		
 		case R.id.iv_whatsapp:
-			mIntent = getPackageManager().getLaunchIntentForPackage("com.whatsapp");;
-			startActivity(mIntent);
+			/*mIntent = getPackageManager().getLaunchIntentForPackage("com.whatsapp");;
+			startActivity(mIntent);*/
 			//openWhatsApp("9674216123@s.whatsapp.net");
+			mIntent = new Intent();
+			mIntent.setAction(Intent.ACTION_SEND);
+			mIntent.putExtra(Intent.EXTRA_TEXT, "Hello, i want to Book a service.");
+			mIntent.setType("text/plain");
+			mIntent.setPackage("com.whatsapp");
+			startActivity(mIntent);
 			break;
 			
 		case R.id.iv_search:
