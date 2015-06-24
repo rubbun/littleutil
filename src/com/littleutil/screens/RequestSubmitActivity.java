@@ -35,6 +35,7 @@ import com.littleutil.dialog.DialogAddress.OnAddressSetListener;
 import com.littleutil.dialog.DialogDescription;
 import com.littleutil.dialog.DialogDescription.OnDescSetListener;
 import com.littleutil.network.HttpClient;
+import com.littleutil.screens.SplashScreen.FetchSubServices;
 
 public class RequestSubmitActivity extends BaseActivity {
 
@@ -150,7 +151,11 @@ public class RequestSubmitActivity extends BaseActivity {
 
 		case R.id.btnConfirm:
 			if (isValid()) {
-				new ReqAsynctask().execute(createReq());
+				if(hasConnection()){
+					new ReqAsynctask().execute(createReq());
+				}else{
+					Toast.makeText(getApplicationContext(), "Please check your internet conncetion..", Toast.LENGTH_LONG).show();
+				}
 			}
 			break;
 
@@ -238,7 +243,7 @@ public class RequestSubmitActivity extends BaseActivity {
 
 	public boolean isValid() {
 		boolean flag = true;
-		if (!(etPhone.getText().toString().trim().length() >= 10)) {
+		if (!(etPhone.getText().toString().trim().length() == 10 || etPhone.getText().toString().trim().length() == 11)) {
 			flag = false;
 			new AlertDialog.Builder(RequestSubmitActivity.this).setCancelable(false).setTitle("Error").setMessage("Please enter a valid phone number").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 

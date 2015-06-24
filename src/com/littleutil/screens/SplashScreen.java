@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.littleutil.BaseActivity;
 import com.littleutil.R;
@@ -32,15 +33,11 @@ public class SplashScreen extends BaseActivity {
 		imageView1.startAnimation(animationFadeIn);
 
 		serviceList.clear();
-		new FetchSubServices().execute();
-
-		/*
-		 * new Handler().postDelayed(new Runnable() {
-		 * 
-		 * @Override public void run() { mIntent = new
-		 * Intent(SplashScreen.this,DashBoard.class); startActivity(mIntent);
-		 * finish(); } }, 6000);
-		 */
+		if(hasConnection()){
+			new FetchSubServices().execute();
+		}else{
+			Toast.makeText(getApplicationContext(), "Please check your internet conncetion..", Toast.LENGTH_LONG).show();
+		}
 	}
 
 	public class FetchSubServices extends AsyncTask<Void, Void, Boolean> {

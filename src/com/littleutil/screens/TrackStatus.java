@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.littleutil.BaseActivity;
 import com.littleutil.R;
@@ -70,7 +71,11 @@ public class TrackStatus extends BaseActivity {
 			}
 		});
 		
-		new getAllBookingInfo().execute();
+		if(hasConnection()){
+			new getAllBookingInfo().execute();
+		}else{
+			Toast.makeText(getApplicationContext(), "Please check your internet conncetion..", Toast.LENGTH_LONG).show();
+		}
 	}
 	
 	public class getAllBookingInfo extends AsyncTask<Void, Void, Void>{

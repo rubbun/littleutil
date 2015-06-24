@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -55,4 +58,24 @@ public class BaseActivity extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v) {}
 
+	 public boolean hasConnection() {
+		 ConnectivityManager cm =
+			        (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+			
+		    NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		    if (wifiNetwork != null && wifiNetwork.isConnected()) {
+		      return true;
+		    }
+
+		    NetworkInfo mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+		    if (mobileNetwork != null && mobileNetwork.isConnected()) {
+		      return true;
+		    }
+
+		    NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+		    if (activeNetwork != null && activeNetwork.isConnected()) {
+		      return true;
+		    }
+		    return false;
+		  }
 }
