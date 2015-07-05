@@ -20,7 +20,7 @@ public class BaseActivity extends Activity implements OnClickListener{
 	public ProgressDialog dialog;
 	public Appsettings app = null;
 	public static ArrayList<ServiceBean> serviceList = new ArrayList<ServiceBean>();
-	public static String[] arr = new String[3];
+	public static String[] arr = new String[5];
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -59,20 +59,37 @@ public class SplashScreen extends BaseActivity {
 				JSONObject obj2 = new JSONObject();
 				obj2.put("id", "3");
 				obj2.put("type", "android");
+				JSONObject obj3 = new JSONObject();
+				obj3.put("id", "4");
+				obj3.put("type", "android");
+				JSONObject obj4 = new JSONObject();
+				obj4.put("id", "5");
+				obj4.put("type", "android");
+				
 				String response = HttpClient.SendHttpPost(Constants.FETCH_SUBERVICES, obj.toString());
 				String response1 = HttpClient.SendHttpPost(Constants.FETCH_SUBERVICES, obj1.toString());
 				String response2 = HttpClient.SendHttpPost(Constants.FETCH_SUBERVICES, obj2.toString());
+				String response3 = HttpClient.SendHttpPost(Constants.FETCH_SUBERVICES, obj3.toString());
+				String response4 = HttpClient.SendHttpPost(Constants.FETCH_SUBERVICES, obj4.toString());
 				if (response != null) {
 					JSONArray jarr = new JSONArray(response);
 					arr[0] = jarr.toString();
-				}
-				if (response1 != null) {
-					JSONArray jarr = new JSONArray(response1);
-					arr[1] = jarr.toString();
-				}
-				if (response2 != null) {
-					JSONArray jarr = new JSONArray(response2);
-					arr[2] = jarr.toString();
+					if (response1 != null) {
+						JSONArray jarr1 = new JSONArray(response1);
+						arr[1] = jarr1.toString();
+						if (response2 != null) {
+							JSONArray jarr2 = new JSONArray(response2);
+							arr[2] = jarr2.toString();
+							if (response3 != null) {
+								JSONArray jarr3 = new JSONArray(response3);
+								arr[3] = jarr3.toString();
+								if (response4 != null) {
+									JSONArray jarr4 = new JSONArray(response4);
+									arr[4] = jarr4.toString();
+								}
+							}
+						}
+					}
 				}
 				return true;
 			} catch (JSONException e) {

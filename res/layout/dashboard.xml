@@ -49,7 +49,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".25"
+            android:layout_weight=".24"
             android:gravity="center|left"
             android:orientation="vertical"
             android:paddingLeft="10dp" >
@@ -64,7 +64,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".75"
+            android:layout_weight=".76"
             android:orientation="vertical"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
@@ -73,7 +73,7 @@
             <LinearLayout
                 android:id="@+id/ll_home_service"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="55dp"
                 android:background="@drawable/home_servicebg"
                 android:gravity="center"
                 android:orientation="vertical" >
@@ -83,15 +83,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Home Services"
-                    android:textSize="27sp"
+                    android:textSize="26sp"
                     android:textColor="@android:color/white"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_general_service"
+                android:id="@+id/ll_property_service"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/general_servicebg"
                 android:gravity="center"
@@ -100,16 +100,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="General Services"
-                    android:textSize="27sp"
+                    android:text="Property Services"
+                    android:textSize="26sp"
                     android:textColor="@android:color/white"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_billing_service"
+                android:id="@+id/ll_government_service"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/billing_servicebg"
                 android:gravity="center"
@@ -118,8 +118,42 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Billing Services"
-                    android:textSize="27sp"
+                    android:text="Government Services"
+                    android:textSize="26sp"
+                    android:textColor="@android:color/white"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_rto_service"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/general_servicebg"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RTO Services"
+                    android:textSize="26sp"
+                    android:textColor="@android:color/white"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_general_service"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/home_servicebg"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="General Services"
+                    android:textSize="26sp"
                     android:textColor="@android:color/white"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>

@@ -50,7 +50,7 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 	public SlidingMenu slidingMenu;
 	private AutoCompleteTextView ll_dialog_search;
 	private ImageView iv_menu,iv_search,iv_whatsapp,iv_call;
-	private LinearLayout ll_home_service,ll_general_service,ll_billing_service;
+	private LinearLayout ll_home_service,ll_general_service,ll_rto_service,ll_property_service,ll_government_service;
 	private ArrayList<SubServiceBean> listItem = new ArrayList<SubServiceBean>();
 	
 	@Override
@@ -112,7 +112,9 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 		
 		ll_home_service = (LinearLayout)findViewById(R.id.ll_home_service);
 		ll_general_service = (LinearLayout)findViewById(R.id.ll_general_service);
-		ll_billing_service = (LinearLayout)findViewById(R.id.ll_billing_service);
+		ll_property_service = (LinearLayout)findViewById(R.id.ll_property_service);
+		ll_rto_service = (LinearLayout)findViewById(R.id.ll_rto_service);
+		ll_government_service = (LinearLayout)findViewById(R.id.ll_government_service);
 		
 		iv_menu = (ImageView)findViewById(R.id.iv_menu);
 		iv_search = (ImageView)findViewById(R.id.iv_search);
@@ -124,13 +126,12 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 		iv_whatsapp.setOnClickListener(this);
 		iv_call.setOnClickListener(this);
 		
-		ll_billing_service = (LinearLayout)findViewById(R.id.ll_billing_service);
-		ll_general_service = (LinearLayout)findViewById(R.id.ll_general_service);
-		ll_home_service = (LinearLayout)findViewById(R.id.ll_home_service);
 		
-		ll_billing_service.setOnClickListener(this);
-		ll_general_service.setOnClickListener(this);
 		ll_home_service.setOnClickListener(this);
+		ll_general_service.setOnClickListener(this);
+		ll_property_service.setOnClickListener(this);
+		ll_rto_service.setOnClickListener(this);
+		ll_government_service.setOnClickListener(this);
 	
 		createList();
 	}
@@ -169,15 +170,27 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 			startActivity(mIntent);
 			break;
 		
-		case R.id.ll_general_service:
+		case R.id.ll_property_service:
 			mIntent = new Intent(DashBoard.this,InnerServices.class);
 			mIntent.putExtra("id", 2);
 			startActivity(mIntent);
 			break;
 			
-		case R.id.ll_billing_service:
+		case R.id.ll_government_service:
 			mIntent = new Intent(DashBoard.this,InnerServices.class);
 			mIntent.putExtra("id", 3);
+			startActivity(mIntent);
+			break;
+			
+		case R.id.ll_rto_service:
+			mIntent = new Intent(DashBoard.this,InnerServices.class);
+			mIntent.putExtra("id", 4);
+			startActivity(mIntent);
+			break;
+			
+		case R.id.ll_general_service:
+			mIntent = new Intent(DashBoard.this,InnerServices.class);
+			mIntent.putExtra("id", 4);
 			startActivity(mIntent);
 			break;
 		}
@@ -194,16 +207,26 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 				jarr = new JSONArray(arr[i]);
 				for(int j = 0; j < jarr.length(); j++){
 					JSONObject object = jarr.getJSONObject(j);
+					String path;
+					if(object.has("path")){
+						path = object.getString("path");
+					}else{
+						path ="";
+					}
 					list.add(new SubServiceBean(object.getString("id"),
 							object.getString("name"), 
-							object.getString("path")));
+							path));
 				}
 				if(i == 0){
-					serviceList.add(new ServiceBean("Home Service", "1", list));
+					serviceList.add(new ServiceBean("Home Services", "1", list));
 				}else if(i == 1){
-					serviceList.add(new ServiceBean("General Service", "2", list));
+					serviceList.add(new ServiceBean("Property Services", "2", list));
 				}else if(i == 2){
-					serviceList.add(new ServiceBean("Billing Service", "3", list));
+					serviceList.add(new ServiceBean("Government Services", "3", list));
+				}else if(i == 3){
+					serviceList.add(new ServiceBean("RTO Services", "4", list));
+				}else if(i == 4){
+					serviceList.add(new ServiceBean("General Services", "5", list));
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
