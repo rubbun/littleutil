@@ -3,7 +3,6 @@ package com.littleutil.screens;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,7 +26,6 @@ import android.widget.Toast;
 
 import com.littleutil.BaseActivity;
 import com.littleutil.R;
-import com.littleutil.adapter.BookingListAdapter;
 import com.littleutil.bean.BookingReqBean;
 import com.littleutil.constant.Constants;
 import com.littleutil.dialog.DialogAddress;
@@ -35,13 +33,12 @@ import com.littleutil.dialog.DialogAddress.OnAddressSetListener;
 import com.littleutil.dialog.DialogDescription;
 import com.littleutil.dialog.DialogDescription.OnDescSetListener;
 import com.littleutil.network.HttpClient;
-import com.littleutil.screens.SplashScreen.FetchSubServices;
 
 public class RequestSubmitActivity extends BaseActivity {
 
-	private EditText etName, etEmail, etPhone, etTime, etPassword, etAddress, etCity, etZipCode, etDate, etArea, etDescription;
+	private EditText etName, etEmail, etPhone, etPassword, etCity, etZipCode, etArea, etDescription;
 	private ImageView ivBack;
-	private TextView tv_service_name;
+	private TextView tv_service_name,etAddress,etTime,etDate;
 	private Button btnConfirm, btnContinue;
 	private DatePicker datePicker;
 	private Calendar calendar;
@@ -61,12 +58,12 @@ public class RequestSubmitActivity extends BaseActivity {
 		etEmail = (EditText) findViewById(R.id.etEmail);
 		etPhone = (EditText) findViewById(R.id.etPhone);
 		etPassword = (EditText) findViewById(R.id.etPassword);
-		etAddress = (EditText) findViewById(R.id.etAddress);
+		etAddress = (TextView) findViewById(R.id.etAddress);
 		etArea = (EditText) findViewById(R.id.etArea);
 		etCity = (EditText) findViewById(R.id.etCity);
 		etZipCode = (EditText) findViewById(R.id.etZipCode);
-		etDate = (EditText) findViewById(R.id.etDate);
-		etTime = (EditText) findViewById(R.id.etTime);
+		etDate = (TextView) findViewById(R.id.etDate);
+		etTime = (TextView) findViewById(R.id.etTime);
 		etDescription = (EditText) findViewById(R.id.etDescription);
 		ivBack = (ImageView) findViewById(R.id.ivBack);
 		btnConfirm = (Button) findViewById(R.id.btnConfirm);
@@ -81,17 +78,9 @@ public class RequestSubmitActivity extends BaseActivity {
 		tv_service_name.setText(name);
 		btnContinue.setOnClickListener(this);
 		btnConfirm.setOnClickListener(this);
-		etDate.setKeyListener(null);
-		etAddress.setKeyListener(null);
-		etCity.setKeyListener(null);
-
-		/*
-		 * etDate.setEnabled(false); etAddress.setEnabled(false);
-		 * etCity.setEnabled(false);
-		 */
-
+		
 		etAddress.setOnClickListener(this);
-		etCity.setOnClickListener(this);
+		etCity.setInputType(0);
 		etDate.setOnClickListener(this);
 		ivBack.setOnClickListener(this);
 		etDescription.setOnClickListener(this);
@@ -131,10 +120,10 @@ public class RequestSubmitActivity extends BaseActivity {
 			break;
 
 		case R.id.etCity:
-			registerForContextMenu(v);
+			/*registerForContextMenu(v);
 			openContextMenu(v);
 			unregisterForContextMenu(v);
-			break;
+*/			break;
 
 		case R.id.etDate:
 			showDialog(999);
@@ -179,7 +168,7 @@ public class RequestSubmitActivity extends BaseActivity {
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
-		if (v == etCity) {
+		/*if (v == etCity) {
 			menu.setHeaderTitle("SELECT CITY");
 			menu.add(0, 1, 0, "Kolkata");
 			menu.add(0, 1, 0, "Bangalore");
@@ -187,26 +176,24 @@ public class RequestSubmitActivity extends BaseActivity {
 			menu.add(0, 1, 0, "Chennai");
 			menu.add(0, 1, 0, "Hyderabad");
 			menu.add(0, 1, 0, "Mumbai");
-		} else if (v == etTime) {
+		} else */if (v == etTime) {
 			menu.setHeaderTitle("SELECT TIME");
-			menu.add(1, 1, 0, "12AM - 2 AM");
-			menu.add(1, 1, 0, "2AM - 4 AM");
-			menu.add(1, 1, 0, "4AM - 6 AM");
-			menu.add(1, 1, 0, "6AM - 8 AM");
-			menu.add(1, 1, 0, "10AM - 12 PM");
-			menu.add(1, 1, 0, "12PM - 2 PM");
-			menu.add(1, 1, 0, "2PM - 4 PM");
-			menu.add(1, 1, 0, "4PM - 6 PM");
-			menu.add(1, 1, 0, "8PM - 10 AM");
-			menu.add(1, 1, 0, "10AM - 12 AM");
+			menu.add(1, 1, 0, "10 AM - 11 AM");
+			menu.add(1, 1, 0, "11 AM - 12 PM");
+			menu.add(1, 1, 0, "12 PM - 1 PM");
+			menu.add(1, 1, 0, "1 PM - 2 PM");
+			menu.add(1, 1, 0, "2 PM - 3 PM");
+			menu.add(1, 1, 0, "3 PM - 4 PM");
+			menu.add(1, 1, 0, "4 PM - 5 PM");
+			menu.add(1, 1, 0, "5 PM - 6 PM");
+			
 		}
-
 	}
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		if (item.getGroupId() == 0) {
-			etCity.setText(item.getTitle());
+			//etCity.setText(item.getTitle());
 		} else if (item.getGroupId() == 1) {
 			etTime.setText(item.getTitle());
 		} else {
@@ -216,7 +203,7 @@ public class RequestSubmitActivity extends BaseActivity {
 	}
 
 	private void showDate(int year, int month, int day) {
-		date = new StringBuilder().append(day).append("/").append(month).append("/").append(year).toString();
+		date = new StringBuilder().append(day).append("-").append(month).append("-").append(year).toString();
 		etDate.setText(date);
 	}
 
@@ -243,9 +230,36 @@ public class RequestSubmitActivity extends BaseActivity {
 
 	public boolean isValid() {
 		boolean flag = true;
-		if (!(etPhone.getText().toString().trim().length() == 10 || etPhone.getText().toString().trim().length() == 11)) {
+		if ((etPhone.getText().toString().trim().length() == 0)) {
+			flag = false;
+			new AlertDialog.Builder(RequestSubmitActivity.this).setCancelable(false).setTitle("Oops , we know your busy...").setMessage("Just leave us your valid contact number.").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}
+			}).show();
+		}else if (!(etPhone.getText().toString().trim().length() == 10 || etPhone.getText().toString().trim().length() == 11)) {
 			flag = false;
 			new AlertDialog.Builder(RequestSubmitActivity.this).setCancelable(false).setTitle("Error").setMessage("Please enter a valid phone number").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}
+			}).show();
+		}else if(!compareDates(getCurrentDate_DDMMYYYY(),(etDate.getText().toString().trim().length() == 0) ? getCurrentDate_DDMMYYYY():etDate.getText().toString().trim())){
+			flag = false;
+			new AlertDialog.Builder(RequestSubmitActivity.this).setCancelable(false).setTitle("Error").setMessage("Past Date is not allowed.").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}
+			}).show();
+		}else if(etZipCode.length() < 6){
+			flag = false;
+			new AlertDialog.Builder(RequestSubmitActivity.this).setCancelable(false).setTitle("Error").setMessage("Please type a valid Zip code.").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
@@ -266,7 +280,7 @@ public class RequestSubmitActivity extends BaseActivity {
 			jsonObject.put("address", etAddress.getText().toString().trim());
 			jsonObject.put("area", etArea.getText().toString().trim());
 			jsonObject.put("city", etCity.getText().toString().trim());
-			jsonObject.put("appointment_date", etDate.getText().toString().trim());
+			jsonObject.put("appointment_date", etDate.getText().toString().trim().length() == 0? getCurrentDate_DDMMYYYY():etDate.getText().toString().trim());
 			jsonObject.put("description", etDescription.getText().toString().trim());
 			jsonObject.put("service_id", service_id);
 			jsonObject.put("appointment_from", etTime.getText().toString().trim());

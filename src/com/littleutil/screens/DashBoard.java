@@ -6,7 +6,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -36,6 +38,7 @@ import com.littleutil.BaseActivity;
 import com.littleutil.R;
 import com.littleutil.adapter.ExpandableListAdapter;
 import com.littleutil.adapter.MemberAdapter;
+import com.littleutil.adapter.ServiceAdapter;
 import com.littleutil.bean.ServiceBean;
 import com.littleutil.bean.SubServiceBean;
 
@@ -47,12 +50,14 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 	private int lastExpandedPosition = -1;
 	private ExpandableListView expandableListView1;
 	private ExpandableListAdapter adapter;
+	private ListView listView1;
 	public SlidingMenu slidingMenu;
 	private AutoCompleteTextView ll_dialog_search;
 	private ImageView iv_menu,iv_search,iv_whatsapp,iv_call;
-	private LinearLayout ll_home_service,ll_general_service,ll_rto_service,ll_property_service,ll_government_service;
+	public ArrayList<ServiceBean> allServiceList = new ArrayList<ServiceBean>();
+	//private LinearLayout ll_home_service,ll_general_service,ll_rto_service,ll_property_service,ll_government_service;
 	private ArrayList<SubServiceBean> listItem = new ArrayList<SubServiceBean>();
-	
+	private ServiceAdapter serviceAdapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -110,12 +115,12 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 			}
 		});
 		
-		ll_home_service = (LinearLayout)findViewById(R.id.ll_home_service);
+		/*ll_home_service = (LinearLayout)findViewById(R.id.ll_home_service);
 		ll_general_service = (LinearLayout)findViewById(R.id.ll_general_service);
 		ll_property_service = (LinearLayout)findViewById(R.id.ll_property_service);
 		ll_rto_service = (LinearLayout)findViewById(R.id.ll_rto_service);
 		ll_government_service = (LinearLayout)findViewById(R.id.ll_government_service);
-		
+		*/
 		iv_menu = (ImageView)findViewById(R.id.iv_menu);
 		iv_search = (ImageView)findViewById(R.id.iv_search);
 		iv_whatsapp = (ImageView)findViewById(R.id.iv_whatsapp);
@@ -127,11 +132,13 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 		iv_call.setOnClickListener(this);
 		
 		
-		ll_home_service.setOnClickListener(this);
+		/*ll_home_service.setOnClickListener(this);
 		ll_general_service.setOnClickListener(this);
 		ll_property_service.setOnClickListener(this);
 		ll_rto_service.setOnClickListener(this);
-		ll_government_service.setOnClickListener(this);
+		ll_government_service.setOnClickListener(this);*/
+		
+		listView1 = (ListView)findViewById(R.id.listView1);
 	
 		createList();
 	}
@@ -164,7 +171,7 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 			startActivity(mIntent);
 			break;
 			
-		case R.id.ll_home_service:
+		/*case R.id.ll_home_service:
 			mIntent = new Intent(DashBoard.this,InnerServices.class);
 			mIntent.putExtra("id", 1);
 			startActivity(mIntent);
@@ -192,7 +199,7 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 			mIntent = new Intent(DashBoard.this,InnerServices.class);
 			mIntent.putExtra("id", 4);
 			startActivity(mIntent);
-			break;
+			break;*/
 		}
 	}
 	
@@ -217,23 +224,41 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 							object.getString("name"), 
 							path));
 				}
-				if(i == 0){
-					serviceList.add(new ServiceBean("Home Services", "1", list));
-				}else if(i == 1){
-					serviceList.add(new ServiceBean("Property Services", "2", list));
-				}else if(i == 2){
-					serviceList.add(new ServiceBean("Government Services", "3", list));
-				}else if(i == 3){
-					serviceList.add(new ServiceBean("RTO Services", "4", list));
-				}else if(i == 4){
-					serviceList.add(new ServiceBean("General Services", "5", list));
-				}
+				serviceList.add(new ServiceBean("Home Services", "1", list));
+				
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 		}
 		adapter = new ExpandableListAdapter(DashBoard.this, serviceList);
 		expandableListView1.setAdapter(adapter);
+		
+		for(int i = 1 ; i <arr.length; i++){
+			ArrayList<SubServiceBean> list = new ArrayList<SubServiceBean>();
+			JSONArray jarr;
+			try {
+				jarr = new JSONArray(arr[i]);
+				for(int j = 0; j < jarr.length(); j++){
+					JSONObject object = jarr.getJSONObject(j);
+					String path;
+					if(object.has("path")){
+						path = object.getString("path");
+					}else{
+						path ="";
+					}
+					list.add(new SubServiceBean(object.getString("id"),
+							object.getString("name"), 
+							path));
+				}
+				allServiceList.add(new ServiceBean("Home Services", "1", list));
+				
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		serviceAdapter = new ServiceAdapter(DashBoard.this, R.layout.service_row, allServiceList);
+		listView1.setAdapter(serviceAdapter);
 	}
 	
 	public void openSearchpage() {
@@ -313,4 +338,25 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 		c.close();
 		
 		}
+	
+	@Override
+	public void onBackPressed() {
+		new AlertDialog.Builder(DashBoard.this).setCancelable(false).setTitle("Alert!!").setMessage("Are you sure you want to exit?").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+				finish();
+			}
+		})
+		.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		})
+		.show();
+		//super.onBackPressed();
+	}
 }

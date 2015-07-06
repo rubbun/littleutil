@@ -23,7 +23,7 @@ public class DialogAddress {
 		etAddress = (EditText)view.findViewById(R.id.etAddress);
 		etAddress.setText(address);
 		new AlertDialog.Builder(baseActivity)
-		.setTitle("Insert Your Address")
+		.setTitle("Provide Your Address")
 		.setCancelable(false)
 		.setView(view)
 		.setPositiveButton("Done", new DialogInterface.OnClickListener() {
@@ -32,9 +32,6 @@ public class DialogAddress {
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
 				listener.onAddressSet(etAddress.getText().toString().trim());
-				
-				
-				
 			}
 		})
 		.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -42,12 +39,11 @@ public class DialogAddress {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
-				listener.onAddressSet(etAddress.getText().toString().trim());
-				
+				//listener.onAddressSet(etAddress.getText().toString().trim());
 			}
 		})
 		.show();
-		
+		etAddress.setSelection(address.length());
 	}
 
 }

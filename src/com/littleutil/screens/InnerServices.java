@@ -15,7 +15,6 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AutoCompleteTextView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -169,4 +168,6 @@ public class InnerServices extends BaseActivity{
 		});
 		dialog.show();
 	}
+	
+	
 }

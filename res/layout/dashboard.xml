@@ -37,7 +37,6 @@
             android:layout_marginRight="15dp"
             android:layout_toLeftOf="@+id/iv_whatsapp"
             android:src="@drawable/search_icon" />
-
     </RelativeLayout>
 
     <LinearLayout
@@ -68,8 +67,10 @@
             android:orientation="vertical"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
+            android:paddingBottom="10dp"
             android:paddingTop="10dp" >
 
+            <!--
             <LinearLayout
                 android:id="@+id/ll_home_service"
                 android:layout_width="match_parent"
@@ -157,6 +158,16 @@
                     android:textColor="@android:color/white"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>
+            -->
+
+            <ListView
+                android:id="@+id/listView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" 
+                android:dividerHeight="8dp"
+                android:divider="@null"
+                >
+            </ListView>
         </LinearLayout>
     </LinearLayout>
 
