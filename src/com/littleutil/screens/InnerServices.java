@@ -17,6 +17,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.littleutil.BaseActivity;
 import com.littleutil.R;
@@ -28,6 +29,7 @@ public class InnerServices extends BaseActivity{
 	
 	private Intent mIntent;
 	private Dialog dialog;
+	private TextView tvServiceName;
 	private AutoCompleteTextView ll_dialog_search;
 	private MemberAdapter memberadapter;
 	private int id;
@@ -43,6 +45,9 @@ public class InnerServices extends BaseActivity{
 		setContentView(R.layout.innser_services);
 		
 		id = getIntent().getExtras().getInt("id");
+		tvServiceName = (TextView)findViewById(R.id.tvServiceName);
+		System.out.println("name: "+getIntent().getExtras().getString("name"));
+		tvServiceName.setText(""+getIntent().getExtras().getString("name"));
 		
 		iv_search = (ImageView)findViewById(R.id.iv_search);
 		iv_whatsapp = (ImageView)findViewById(R.id.iv_whatsapp);
@@ -70,7 +75,7 @@ public class InnerServices extends BaseActivity{
 	}
 	
 	private void setInnerServiceList(int id2) {
-		list = serviceList.get(id2).getList();
+		list = allServiceList.get(id2).getList();
 		adapter = new SubServiceAdapter(InnerServices.this, R.layout.sub_service_row, list);
 		ll_service_list.setAdapter(adapter);
 	}

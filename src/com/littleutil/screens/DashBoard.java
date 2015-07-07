@@ -2,10 +2,6 @@ package com.littleutil.screens;
 
 import java.util.ArrayList;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -29,7 +25,6 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -39,7 +34,6 @@ import com.littleutil.R;
 import com.littleutil.adapter.ExpandableListAdapter;
 import com.littleutil.adapter.MemberAdapter;
 import com.littleutil.adapter.ServiceAdapter;
-import com.littleutil.bean.ServiceBean;
 import com.littleutil.bean.SubServiceBean;
 
 public class DashBoard extends BaseActivity implements OnClickListener{
@@ -54,7 +48,7 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 	public SlidingMenu slidingMenu;
 	private AutoCompleteTextView ll_dialog_search;
 	private ImageView iv_menu,iv_search,iv_whatsapp,iv_call;
-	public ArrayList<ServiceBean> allServiceList = new ArrayList<ServiceBean>();
+	
 	//private LinearLayout ll_home_service,ll_general_service,ll_rto_service,ll_property_service,ll_government_service;
 	private ArrayList<SubServiceBean> listItem = new ArrayList<SubServiceBean>();
 	private ServiceAdapter serviceAdapter;
@@ -139,6 +133,18 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 		ll_government_service.setOnClickListener(this);*/
 		
 		listView1 = (ListView)findViewById(R.id.listView1);
+		
+		listView1.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+				mIntent = new Intent(DashBoard.this,InnerServices.class);
+				mIntent.putExtra("id",position);
+				mIntent.putExtra("name",allServiceList.get(position).getService_name());
+				System.out.println("name: "+allServiceList.get(position).getService_name());
+				startActivity(mIntent);
+			}
+		});
 	
 		createList();
 	}
@@ -204,58 +210,9 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 	}
 	
 	private void createList() {
-		ArrayList<SubServiceBean> list1 = new ArrayList<SubServiceBean>();
-		list1.add(new SubServiceBean("1", "Track Your status", ""));
-		serviceList.add(new ServiceBean("Settings", "0", list1));
-		for(int i= 0 ; i <arr.length; i++){
-			ArrayList<SubServiceBean> list = new ArrayList<SubServiceBean>();
-			JSONArray jarr;
-			try {
-				jarr = new JSONArray(arr[i]);
-				for(int j = 0; j < jarr.length(); j++){
-					JSONObject object = jarr.getJSONObject(j);
-					String path;
-					if(object.has("path")){
-						path = object.getString("path");
-					}else{
-						path ="";
-					}
-					list.add(new SubServiceBean(object.getString("id"),
-							object.getString("name"), 
-							path));
-				}
-				serviceList.add(new ServiceBean("Home Services", "1", list));
-				
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-		}
+	
 		adapter = new ExpandableListAdapter(DashBoard.this, serviceList);
 		expandableListView1.setAdapter(adapter);
-		
-		for(int i = 1 ; i <arr.length; i++){
-			ArrayList<SubServiceBean> list = new ArrayList<SubServiceBean>();
-			JSONArray jarr;
-			try {
-				jarr = new JSONArray(arr[i]);
-				for(int j = 0; j < jarr.length(); j++){
-					JSONObject object = jarr.getJSONObject(j);
-					String path;
-					if(object.has("path")){
-						path = object.getString("path");
-					}else{
-						path ="";
-					}
-					list.add(new SubServiceBean(object.getString("id"),
-							object.getString("name"), 
-							path));
-				}
-				allServiceList.add(new ServiceBean("Home Services", "1", list));
-				
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-		}
 		
 		serviceAdapter = new ServiceAdapter(DashBoard.this, R.layout.service_row, allServiceList);
 		listView1.setAdapter(serviceAdapter);

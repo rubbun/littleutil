@@ -161,8 +161,8 @@
                         android:hint="@string/mobile"
                         android:imeOptions="actionNext"
                         android:inputType="phone"
-                        android:paddingLeft="8dp"
                         android:maxLength="11"
+                        android:paddingLeft="8dp"
                         android:singleLine="true"
                         android:textColor="#282c2b"
                         android:textColorHint="#000000" >
@@ -244,15 +244,15 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="@null"
+                        android:gravity="center|left"
                         android:hint="@string/address"
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:paddingLeft="8dp"
-                        android:gravity="center|left"
                         android:singleLine="true"
                         android:textColor="#282c2b"
-                        android:textSize="18sp"
-                        android:textColorHint="#000000" >
+                        android:textColorHint="#000000"
+                        android:textSize="18sp" >
                     </TextView>
                 </LinearLayout>
             </LinearLayout>
@@ -332,11 +332,11 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="@null"
+                        android:drawableRight="@drawable/ic_dropdown"
+                        android:editable="false"
                         android:hint="@string/area"
                         android:imeOptions="actionNext"
-                        android:drawableRight="@drawable/ic_dropdown"
                         android:inputType="text"
-                        android:editable="false"
                         android:paddingLeft="8dp"
                         android:singleLine="true"
                         android:textColor="#282c2b"
@@ -416,13 +416,15 @@
                         android:background="@null"
                         android:drawableRight="@drawable/ic_dropdown"
                         android:editable="false"
+                        android:gravity="center|left"
                         android:hint="@string/select_date"
                         android:imeOptions="actionDone"
                         android:inputType="text"
                         android:paddingLeft="8dp"
                         android:singleLine="true"
                         android:textColor="#282c2b"
-                        android:textColorHint="#000000" >
+                        android:textColorHint="#000000"
+                        android:textSize="18sp" >
                     </TextView>
                 </LinearLayout>
             </LinearLayout>
@@ -460,12 +462,14 @@
                         android:background="@null"
                         android:drawableRight="@drawable/ic_dropdown"
                         android:editable="false"
+                        android:gravity="center|left"
                         android:hint="@string/select_time"
                         android:imeOptions="actionNext"
                         android:paddingLeft="8dp"
                         android:singleLine="true"
                         android:textColor="#282c2b"
-                        android:textColorHint="#000000" >
+                        android:textColorHint="#000000"
+                        android:textSize="18sp" >
                     </TextView>
                 </LinearLayout>
             </LinearLayout>
@@ -504,9 +508,9 @@
                         android:hint="@string/pincode"
                         android:imeOptions="actionNext"
                         android:inputType="number"
+                        android:maxLength="6"
                         android:paddingLeft="8dp"
                         android:singleLine="true"
-                        android:maxLength="6"
                         android:textColor="#282c2b"
                         android:textColorHint="#000000" >
                     </EditText>

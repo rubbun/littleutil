@@ -14,8 +14,8 @@ import android.widget.TextView;
 import com.littleutil.R;
 import com.littleutil.bean.ServiceBean;
 
-public class ServiceAdapter extends ArrayAdapter<ServiceBean>{
-	
+public class ServiceAdapter extends ArrayAdapter<ServiceBean> {
+
 	private Activity activity;
 	private ViewHolder mHolder;
 	public ArrayList<ServiceBean> item = new ArrayList<ServiceBean>();
@@ -53,14 +53,13 @@ public class ServiceAdapter extends ArrayAdapter<ServiceBean>{
 		}
 
 		final ServiceBean bean = item.get(position);
-		if(position != 0){
-			if (bean != null) {
-				mHolder.tvServicename.setText(bean.getService_name());
-				if((position) % 2 == 0 ){
-					mHolder.ll_service.setBackgroundResource(R.drawable.home_servicebg);
-				}else {
-					mHolder.ll_service.setBackgroundResource(R.drawable.general_servicebg);
-				}
+
+		if (bean != null) {
+			mHolder.tvServicename.setText(bean.getService_name());
+			if ((position) % 2 == 0) {
+				mHolder.ll_service.setBackgroundResource(R.drawable.home_servicebg);
+			} else {
+				mHolder.ll_service.setBackgroundResource(R.drawable.general_servicebg);
 			}
 		}
 		return v;

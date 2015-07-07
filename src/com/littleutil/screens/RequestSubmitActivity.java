@@ -257,7 +257,7 @@ public class RequestSubmitActivity extends BaseActivity {
 					dialog.dismiss();
 				}
 			}).show();
-		}else if(etZipCode.length() < 6){
+		}else if(etZipCode.length() > 0 && etZipCode.length() < 6){
 			flag = false;
 			new AlertDialog.Builder(RequestSubmitActivity.this).setCancelable(false).setTitle("Error").setMessage("Please type a valid Zip code.").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 
