@@ -5,45 +5,24 @@
     android:orientation="vertical" >
 
     <LinearLayout
+        android:id="@+id/llRowBg"
         android:layout_width="fill_parent"
         android:layout_height="120dp"
         android:background="@drawable/main_bg"
-        android:gravity="center"
         android:orientation="horizontal"
-        android:padding="5dp"
+        android:padding="40dp"
         android:weightSum="1" >
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight=".40"
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="15dp" >
-
-            <ImageView
-                android:id="@+id/iv_service"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_launcher" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight=".60"
-            android:gravity="center" >
-
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#0d0e10" />
-        </LinearLayout>
+            android:text="Medium Text"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+             />
     </LinearLayout>
 
 </LinearLayout>

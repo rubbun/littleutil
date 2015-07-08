@@ -13,6 +13,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -86,15 +87,16 @@ public class BaseActivity extends Activity implements OnClickListener{
 	 
 	 public static String getCurrentTimeStamp()
 		{
-			Calendar c = Calendar.getInstance();
+			/*Calendar c = Calendar.getInstance();
 			int mHour = c.get(Calendar.HOUR);
 			int mMinute = c.get(Calendar.MINUTE);
 			int mSeconds = c.get(Calendar.SECOND);
 			
-			return mHour +":"+ mMinute +":"+ mSeconds;
+			return mHour +":"+ mMinute +":"+ mSeconds;*/
+		 
+		 		String delegate = "hh aaa"; 
+		         return  (String) DateFormat.format(delegate,Calendar.getInstance().getTime()); 
 		}
-
-
 
 	public static String getCurrentDate()
 		{

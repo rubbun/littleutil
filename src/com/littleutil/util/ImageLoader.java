@@ -19,7 +19,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.littleutil.R;
 
@@ -27,7 +29,8 @@ public class ImageLoader {
     
     MemoryCache memoryCache=new MemoryCache();
     FileCache fileCache;
-    private Map<ImageView, String> imageViews=Collections.synchronizedMap(new WeakHashMap<ImageView, String>());
+    BitmapDrawable background;
+    private Map<LinearLayout, String> imageViews=Collections.synchronizedMap(new WeakHashMap<LinearLayout, String>());
     ExecutorService executorService; 
     
     public ImageLoader(Context context){
@@ -36,20 +39,22 @@ public class ImageLoader {
     }
     
     final int stub_id=R.drawable.ic_launcher;
-    public void DisplayImage(String url, ImageView imageView)
+    public void DisplayImage(String url, LinearLayout imageView)
     {
         imageViews.put(imageView, url);
         Bitmap bitmap=memoryCache.get(url);
-        if(bitmap!=null)
-            imageView.setImageBitmap(bitmap);
+        if(bitmap!=null){
+        	background = new BitmapDrawable(bitmap);
+        	imageView.setBackgroundDrawable(background);
+        }
         else
         {
             queuePhoto(url, imageView);
-            imageView.setImageResource(stub_id);
+            imageView.setBackgroundResource(stub_id);
         }
     }
         
-    private void queuePhoto(String url, ImageView imageView)
+    private void queuePhoto(String url, LinearLayout imageView)
     {
         PhotoToLoad p=new PhotoToLoad(url, imageView);
         executorService.submit(new PhotosLoader(p));
@@ -127,8 +132,8 @@ public class ImageLoader {
     private class PhotoToLoad
     {
         public String url;
-        public ImageView imageView;
-        public PhotoToLoad(String u, ImageView i){
+        public LinearLayout imageView;
+        public PhotoToLoad(String u, LinearLayout i){
             url=u; 
             imageView=i;
         }
@@ -175,10 +180,12 @@ public class ImageLoader {
         {
             if(imageViewReused(photoToLoad))
                 return;
-            if(bitmap!=null)
-                photoToLoad.imageView.setImageBitmap(bitmap);
+            if(bitmap!=null){
+            	background = new BitmapDrawable(bitmap);
+                photoToLoad.imageView.setBackgroundDrawable(background);
+            }
             else
-                photoToLoad.imageView.setImageResource(stub_id);
+                photoToLoad.imageView.setBackgroundResource(stub_id);
         }
     }
 

@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.littleutil.R;
@@ -49,7 +51,7 @@ public class SubServiceAdapter extends ArrayAdapter<SubServiceBean>{
 			v.setTag(mHolder);
 
 			mHolder.tv_name = (TextView) v.findViewById(R.id.tv_name);
-			mHolder.iv_service = (ImageView) v.findViewById(R.id.iv_service);
+			mHolder.llRowBg = (LinearLayout) v.findViewById(R.id.llRowBg);
 
 		} else {
 			mHolder = (ViewHolder) v.getTag();
@@ -59,13 +61,19 @@ public class SubServiceAdapter extends ArrayAdapter<SubServiceBean>{
 
 		if (member != null) {
 			mHolder.tv_name.setText(member.getName());
-			imageLoader.DisplayImage(member.getImage_path(),mHolder.iv_service);
+			imageLoader.DisplayImage(member.getImage_path(),mHolder.llRowBg);
+		}
+		
+		if((position+1) % 2 == 0){
+			mHolder.llRowBg.setGravity(Gravity.CENTER|Gravity.LEFT);
+		}else{
+			mHolder.llRowBg.setGravity(Gravity.CENTER|Gravity.RIGHT);
 		}
 		return v;
 	}
 
 	class ViewHolder {
 		public TextView tv_name;
-		public ImageView iv_service;
+		public LinearLayout llRowBg;
 	}
 }

@@ -88,6 +88,8 @@ public class RequestSubmitActivity extends BaseActivity {
 
 		ll_part1.setVisibility(View.VISIBLE);
 		ll_part2.setVisibility(View.GONE);
+		
+		isValidTime();
 
 		if(app.getUserinfo().getMobile_no().length()>0){
 			new getUserBookingInfo().execute();
@@ -266,8 +268,24 @@ public class RequestSubmitActivity extends BaseActivity {
 					dialog.dismiss();
 				}
 			}).show();
-		}
+		}/*else if(isValidTime()){
+			flag = false;
+			new AlertDialog.Builder(RequestSubmitActivity.this).setCancelable(false).setTitle("Error").setMessage("Please type a valid Zip code.").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}
+			}).show();
+		}*/
 		return flag;
+	}
+
+	private boolean isValidTime() {
+		boolean flag = true;
+		String time = getCurrentTimeStamp();
+		System.out.println("!!time "+time);
+		return false;
 	}
 
 	public JSONObject createReq() {
@@ -281,11 +299,11 @@ public class RequestSubmitActivity extends BaseActivity {
 			jsonObject.put("area", etArea.getText().toString().trim());
 			jsonObject.put("city", etCity.getText().toString().trim());
 			jsonObject.put("appointment_date", etDate.getText().toString().trim().length() == 0? getCurrentDate_DDMMYYYY():etDate.getText().toString().trim());
+			jsonObject.put("appointment_from", etTime.getText().toString().trim().length() == 0? ""+getCurrentTimeStamp():etTime.getText().toString().trim());
 			jsonObject.put("description", etDescription.getText().toString().trim());
 			jsonObject.put("service_id", service_id);
-			jsonObject.put("appointment_from", etTime.getText().toString().trim());
 			jsonObject.put("pincode", etZipCode.getText().toString().trim());
-
+			
 			return jsonObject;
 		} catch (Exception e) {
 			e.printStackTrace();
