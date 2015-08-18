@@ -2,7 +2,9 @@ package com.littleutil.screens;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.regex.Pattern;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,16 +18,20 @@ import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.littleutil.BaseActivity;
 import com.littleutil.R;
+import com.littleutil.bean.AreaBean;
 import com.littleutil.bean.BookingReqBean;
 import com.littleutil.constant.Constants;
 import com.littleutil.dialog.DialogAddress;
@@ -33,11 +39,11 @@ import com.littleutil.dialog.DialogAddress.OnAddressSetListener;
 import com.littleutil.dialog.DialogDescription;
 import com.littleutil.dialog.DialogDescription.OnDescSetListener;
 import com.littleutil.network.HttpClient;
+import com.littleutil.network.HttpClientGet;
 
 public class RequestSubmitActivity extends BaseActivity {
 
-	private EditText etName, etEmail, etPhone, etPassword, etCity, etZipCode, etArea, etDescription;
-	private ImageView ivBack;
+	private EditText etName, etEmail, etPhone, etPassword, etCity, etZipCode, etDescription;
 	private TextView tv_service_name,etAddress,etTime,etDate;
 	private Button btnConfirm, btnContinue;
 	private DatePicker datePicker;
@@ -46,8 +52,15 @@ public class RequestSubmitActivity extends BaseActivity {
 	private String date, time, name, service_id;
 	private LinearLayout ll_part1, ll_part2;
 	public boolean flag = true;
+	private LinearLayout ivBack;
+	private Spinner spArea;
+	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private ArrayList<BookingReqBean> list = new ArrayList<BookingReqBean>();
-
+	private ArrayList<AreaBean> areaList = new ArrayList<AreaBean>();
+	private String selectedArea = "";
+	
+	private String[] areanameList;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,13 +72,13 @@ public class RequestSubmitActivity extends BaseActivity {
 		etPhone = (EditText) findViewById(R.id.etPhone);
 		etPassword = (EditText) findViewById(R.id.etPassword);
 		etAddress = (TextView) findViewById(R.id.etAddress);
-		etArea = (EditText) findViewById(R.id.etArea);
+		spArea = (Spinner) findViewById(R.id.spArea);
 		etCity = (EditText) findViewById(R.id.etCity);
 		etZipCode = (EditText) findViewById(R.id.etZipCode);
 		etDate = (TextView) findViewById(R.id.etDate);
 		etTime = (TextView) findViewById(R.id.etTime);
 		etDescription = (EditText) findViewById(R.id.etDescription);
-		ivBack = (ImageView) findViewById(R.id.ivBack);
+		ivBack = (LinearLayout) findViewById(R.id.ivBack);
 		btnConfirm = (Button) findViewById(R.id.btnConfirm);
 		btnContinue = (Button) findViewById(R.id.btnContinue);
 		ll_part1 = (LinearLayout) findViewById(R.id.ll_part1);
@@ -95,6 +108,19 @@ public class RequestSubmitActivity extends BaseActivity {
 			new getUserBookingInfo().execute();
 		}
 		setCurrentDate();
+		
+		spArea.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> adapter, View arg1, int position, long arg3) {
+				selectedArea = adapter.getItemAtPosition(position).toString();
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				
+			}
+		});
 	}
 
 	private void setCurrentDate() {
@@ -137,7 +163,12 @@ public class RequestSubmitActivity extends BaseActivity {
 			unregisterForContextMenu(v);
 			break;
 		case R.id.ivBack:
-			finish();
+			if(ll_part1.getVisibility() == View.GONE ){
+				ll_part1.setVisibility(View.VISIBLE);
+				ll_part2.setVisibility(View.GONE);
+			}else{
+				finish();
+			}
 			break;
 
 		case R.id.btnConfirm:
@@ -180,15 +211,10 @@ public class RequestSubmitActivity extends BaseActivity {
 			menu.add(0, 1, 0, "Mumbai");
 		} else */if (v == etTime) {
 			menu.setHeaderTitle("SELECT TIME");
-			menu.add(1, 1, 0, "10 AM - 11 AM");
-			menu.add(1, 1, 0, "11 AM - 12 PM");
-			menu.add(1, 1, 0, "12 PM - 1 PM");
-			menu.add(1, 1, 0, "1 PM - 2 PM");
-			menu.add(1, 1, 0, "2 PM - 3 PM");
-			menu.add(1, 1, 0, "3 PM - 4 PM");
-			menu.add(1, 1, 0, "4 PM - 5 PM");
-			menu.add(1, 1, 0, "5 PM - 6 PM");
-			
+			menu.add(1, 1, 0, "10 AM - 12 PM");
+			menu.add(1, 1, 0, "12 PM - 2 PM");
+			menu.add(1, 1, 0, "2 PM - 4 PM");
+			menu.add(1, 1, 0, "4 PM - 6 PM");
 		}
 	}
 
@@ -241,6 +267,17 @@ public class RequestSubmitActivity extends BaseActivity {
 					dialog.dismiss();
 				}
 			}).show();
+		}else if ((etEmail.getText().toString().trim().length() != 0)) {
+			if(!isvalidMailid(""+etEmail.getText().toString().trim())){
+				flag = false;
+				new AlertDialog.Builder(RequestSubmitActivity.this).setCancelable(false).setTitle("Error").setMessage("Please enter a valid email id").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				}).show();
+			}
 		}else if (!(etPhone.getText().toString().trim().length() == 10 || etPhone.getText().toString().trim().length() == 11)) {
 			flag = false;
 			new AlertDialog.Builder(RequestSubmitActivity.this).setCancelable(false).setTitle("Error").setMessage("Please enter a valid phone number").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -284,7 +321,6 @@ public class RequestSubmitActivity extends BaseActivity {
 	private boolean isValidTime() {
 		boolean flag = true;
 		String time = getCurrentTimeStamp();
-		System.out.println("!!time "+time);
 		return false;
 	}
 
@@ -296,10 +332,10 @@ public class RequestSubmitActivity extends BaseActivity {
 			jsonObject.put("mobile", etPhone.getText().toString().trim());
 			jsonObject.put("password", etPassword.getText().toString().trim());
 			jsonObject.put("address", etAddress.getText().toString().trim());
-			jsonObject.put("area", etArea.getText().toString().trim());
-			jsonObject.put("city", etCity.getText().toString().trim());
+			jsonObject.put("area",selectedArea /*etArea.getText().toString().trim()*/);
+			jsonObject.put("city", "Bangalore");
 			jsonObject.put("appointment_date", etDate.getText().toString().trim().length() == 0? getCurrentDate_DDMMYYYY():etDate.getText().toString().trim());
-			jsonObject.put("appointment_from", etTime.getText().toString().trim().length() == 0? ""+getCurrentTimeStamp():etTime.getText().toString().trim());
+			jsonObject.put("appointment_from", etTime.getText().toString().trim().length() == 0? getFormattedTime():etTime.getText().toString().trim());
 			jsonObject.put("description", etDescription.getText().toString().trim());
 			jsonObject.put("service_id", service_id);
 			jsonObject.put("pincode", etZipCode.getText().toString().trim());
@@ -340,9 +376,9 @@ public class RequestSubmitActivity extends BaseActivity {
 			doRemoveLoading();
 			if (result) {
 				if (etPassword.getText().toString().length() > 0) {
-					app.getUserinfo().SetUserInfo(etName.getText().toString().trim(), etEmail.getText().toString().trim(), etPhone.getText().toString().trim(), etPassword.getText().toString().trim(), etArea.getText().toString().trim(), etCity.getText().toString().trim(), etZipCode.getText().toString().trim(), true);
+					app.getUserinfo().SetUserInfo(etName.getText().toString().trim(), etEmail.getText().toString().trim(), etPhone.getText().toString().trim(), etPassword.getText().toString().trim(), selectedArea, etCity.getText().toString().trim(), etZipCode.getText().toString().trim(), true);
 				} else {
-					app.getUserinfo().SetUserInfo(etName.getText().toString().trim(), etEmail.getText().toString().trim(), etPhone.getText().toString().trim(), etPassword.getText().toString().trim(), etArea.getText().toString().trim(), etCity.getText().toString().trim(), etZipCode.getText().toString().trim(), false);
+					app.getUserinfo().SetUserInfo(etName.getText().toString().trim(), etEmail.getText().toString().trim(), etPhone.getText().toString().trim(), etPassword.getText().toString().trim(), selectedArea, etCity.getText().toString().trim(), etZipCode.getText().toString().trim(), false);
 				}
 				Toast.makeText(getApplicationContext(), "Request Successfully submitted.", Toast.LENGTH_LONG).show();
 				finish();
@@ -359,6 +395,56 @@ public class RequestSubmitActivity extends BaseActivity {
 			ll_part2.setVisibility(View.GONE);
 		} else if (ll_part1.getVisibility() == View.VISIBLE) {
 			finish();
+		}
+	}
+	
+	public class getAllAreaList extends AsyncTask<Void, Void, String[]>{
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			doShowLoading();
+		}
+		
+		@Override
+		protected String[] doInBackground(Void... params) {
+			try {
+				String response = HttpClientGet.SendHttpGet(Constants.ALL_AREA_INFO);
+				if (response != null) {
+					JSONObject obj = new JSONObject(response);
+					
+					JSONArray jarr = obj.getJSONArray("areas");
+					areanameList = new String[jarr.length()];
+					for(int i = 0 ; i < jarr.length(); i++){
+						
+						JSONObject jobj = jarr.getJSONObject(i);
+						
+						areaList.add(new AreaBean(jobj.getString("id"),
+								jobj.getString("name"),
+								jobj.getString("pincode"),
+								jobj.getString("city_id")));
+						areanameList[i] = jobj.getString("name");
+					}
+					return areanameList;
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(String[] result) {
+			super.onPostExecute(result);
+			doRemoveLoading();
+			if(result != null){
+				ArrayAdapter arrayAdapter = new ArrayAdapter<String>(RequestSubmitActivity.this,
+		                android.R.layout.simple_spinner_item, areanameList);
+				arrayAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+ 
+				spArea.setAdapter(arrayAdapter);
+			}
 		}
 	}
 	
@@ -393,19 +479,141 @@ public class RequestSubmitActivity extends BaseActivity {
 			doRemoveLoading();
 			if(result != null){
 				try {
-					etName.setText(result.getString("NAME"));
-					etEmail.setText(result.getString("EMAIL"));
-					etPhone.setText(result.getString("MOBILE"));
-					etAddress.setText(result.getString("ADDRESS1"));
-					etArea.setText(result.getString("AREA1"));
-					etCity.setText(result.getString("CITY1"));
+					if(!result.isNull("NAME")){
+						etName.setText(result.getString("NAME"));
+					}
+					if(!result.isNull("EMAIL")){
+						etEmail.setText(result.getString("EMAIL"));
+					}
+					if(!result.isNull("MOBILE")){
+						etPhone.setText(result.getString("MOBILE"));
+					}
+					if(!result.isNull("ADDRESS1")){
+						etAddress.setText(result.getString("ADDRESS1"));
+					}
+
+					if(!result.isNull("CITY1")){
+						etCity.setText(result.getString("CITY1"));
+					}
+					if(!result.isNull("PIN")){
+						etZipCode.setText(result.getString("PIN"));
+					}
+					if(!result.isNull("PASSWORD")){
+						etPassword.setText(result.getString("PASSWORD"));
+					}
 					
-					etZipCode.setText(result.getString("PIN"));
-					etPassword.setText(result.getString("PASSWORD"));
+					if(areaList.size() == 0){
+						new getAllAreaList().execute();
+					}
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 			}
 		}
+	}
+
+	
+	/*public class getUserBookingInfo extends AsyncTask<Void, Void, JSONObject>{
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			doShowLoading();
+		}
+		
+		@Override
+		protected JSONObject doInBackground(Void... params) {
+			JSONObject ob = new JSONObject();
+			try {
+				ob.put("phone_number", app.getUserinfo().getMobile_no());
+				String response = HttpClient.SendHttpPost(Constants.LATEST_USER_INFO, ob.toString());
+				if (response != null) {
+					JSONObject object = new JSONObject(response);
+					JSONObject arr = object.getJSONObject("track");
+					JSONArray jarr = object.getJSONArray("areas");
+					for(int i = 0 ; i < jarr.length(); i++){
+						
+						JSONObject jobj = jarr.getJSONObject(i);
+						
+						areaList.add(new AreaBean(jobj.getString("id"),
+								jobj.getString("name"),
+								jobj.getString("pincode"),
+								jobj.getString("city_id")));
+					}
+					return arr;
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(JSONObject result) {
+			super.onPostExecute(result);
+			doRemoveLoading();
+			if(result != null){
+				try {
+					if(!result.isNull("NAME")){
+						etName.setText(result.getString("NAME"));
+					}
+					if(!result.isNull("EMAIL")){
+						etEmail.setText(result.getString("EMAIL"));
+					}
+					if(!result.isNull("MOBILE")){
+						etPhone.setText(result.getString("MOBILE"));
+					}
+					if(!result.isNull("ADDRESS1")){
+						etAddress.setText(result.getString("ADDRESS1"));
+					}
+
+					if(!result.isNull("CITY1")){
+						etCity.setText(result.getString("CITY1"));
+					}
+					if(!result.isNull("PIN")){
+						etZipCode.setText(result.getString("PIN"));
+					}
+					if(!result.isNull("PASSWORD")){
+						etPassword.setText(result.getString("PASSWORD"));
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	*/
+	public String getFormattedTime(){
+		String time1 = "";
+		String time2 = "";
+		String[] splited = getCurrentTimeStamp().split("\\s+");
+		int time_range1 = Integer.parseInt(splited[0]) + 2;
+		int time_range2 = time_range1 + 2;
+		if(time_range1 >= 12){
+			time_range1 = (time_range1 - 12);
+			if(splited[1].equalsIgnoreCase("AM")){
+				time1 = ""+time_range1 + ""+ "PM";
+			}else{
+				time1 = ""+time_range1 + ""+ "AM";
+			}
+		}else{
+			time1 = ""+time_range1 + ""+ splited[1];
+		}
+		
+		if(time_range2 >= 12){
+			time_range2 = (time_range2 - 12);
+			if(splited[1].equalsIgnoreCase("AM")){
+				time2 = ""+time_range2 + ""+ "PM";
+			}else{
+				time2 = ""+time_range2 + ""+ "AM";
+			}
+		}else{
+			time2 = ""+time_range2 + ""+ splited[1];
+		}
+		return ""+time1 + " "+time2;
+	}
+	
+	public boolean isvalidMailid(String mail) {
+		return Pattern.compile(EMAIL_PATTERN).matcher(mail).matches();
 	}
 }

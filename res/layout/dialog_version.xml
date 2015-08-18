@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#007AB7"
+        android:background="#007A87"
         android:gravity="center"
         android:orientation="vertical" >
 
@@ -318,10 +318,11 @@
                 android:id="@+id/btn_ok"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
+                android:layout_margin="12dp"
                 android:layout_alignParentBottom="true"
-                android:background="#F96262"
+                android:background="@android:color/white"
                 android:text="OK"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </RelativeLayout>

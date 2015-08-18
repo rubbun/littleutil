@@ -11,14 +11,22 @@
         android:background="#007a87"
         android:orientation="vertical" >
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/iv_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="12dp"
-            android:src="@drawable/menu_icon" />
+            android:gravity="center"
+             >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/menu_icon" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/iv_whatsapp"
@@ -51,7 +59,7 @@
             android:layout_weight=".24"
             android:gravity="center|left"
             android:orientation="vertical"
-            android:paddingLeft="10dp" >
+            android:paddingLeft="25dp" >
 
             <ImageView
                 android:id="@+id/textView1"
@@ -65,108 +73,17 @@
             android:layout_height="0dp"
             android:layout_weight=".76"
             android:orientation="vertical"
+            android:paddingBottom="10dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:paddingBottom="10dp"
             android:paddingTop="10dp" >
-
-            <!--
-            <LinearLayout
-                android:id="@+id/ll_home_service"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="@drawable/home_servicebg"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Home Services"
-                    android:textSize="26sp"
-                    android:textColor="@android:color/white"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_property_service"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/general_servicebg"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Property Services"
-                    android:textSize="26sp"
-                    android:textColor="@android:color/white"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_government_service"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/billing_servicebg"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Government Services"
-                    android:textSize="26sp"
-                    android:textColor="@android:color/white"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/ll_rto_service"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/general_servicebg"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="RTO Services"
-                    android:textSize="26sp"
-                    android:textColor="@android:color/white"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/ll_general_service"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/home_servicebg"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="General Services"
-                    android:textSize="26sp"
-                    android:textColor="@android:color/white"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-            </LinearLayout>
-            -->
 
             <ListView
                 android:id="@+id/listView1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" 
-                android:dividerHeight="10dp"
+                android:layout_height="match_parent"
                 android:divider="@null"
-                >
+                android:dividerHeight="10dp" >
             </ListView>
         </LinearLayout>
     </LinearLayout>

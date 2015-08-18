@@ -79,13 +79,13 @@ public class SplashScreen extends BaseActivity {
 	}
 
 	private void createList(String response) {
-
 		try {
 			JSONArray arr = new JSONArray(response);
 			serviceList.clear();
 			allServiceList.clear();
 			ArrayList<SubServiceBean> list1 = new ArrayList<SubServiceBean>();
-			list1.add(new SubServiceBean("1", "Track Your status", ""));
+			list1.add(new SubServiceBean("1", "Track Your Status", ""));
+			list1.add(new SubServiceBean("2", "Track Service Rates", ""));
 			serviceList.add(new ServiceBean("Settings", "0", list1));
 			for (int i = 0; i < arr.length(); i++) {
 				JSONObject obj = arr.getJSONObject(i);

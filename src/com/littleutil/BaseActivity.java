@@ -93,9 +93,9 @@ public class BaseActivity extends Activity implements OnClickListener{
 			int mSeconds = c.get(Calendar.SECOND);
 			
 			return mHour +":"+ mMinute +":"+ mSeconds;*/
-		 
+		// return  "9 AM";
 		 		String delegate = "hh aaa"; 
-		         return  (String) DateFormat.format(delegate,Calendar.getInstance().getTime()); 
+		        return  (String) DateFormat.format(delegate,Calendar.getInstance().getTime()); 
 		}
 
 	public static String getCurrentDate()

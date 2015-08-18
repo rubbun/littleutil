@@ -10,7 +10,8 @@
         android:layout_height="120dp"
         android:background="@drawable/main_bg"
         android:orientation="horizontal"
-        android:padding="40dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
         android:weightSum="1" >
 
         <TextView

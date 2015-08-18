@@ -25,6 +25,7 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -47,7 +48,8 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 	private ListView listView1;
 	public SlidingMenu slidingMenu;
 	private AutoCompleteTextView ll_dialog_search;
-	private ImageView iv_menu,iv_search,iv_whatsapp,iv_call;
+	private LinearLayout iv_menu;
+	private ImageView iv_search,iv_whatsapp,iv_call;
 	
 	//private LinearLayout ll_home_service,ll_general_service,ll_rto_service,ll_property_service,ll_government_service;
 	private ArrayList<SubServiceBean> listItem = new ArrayList<SubServiceBean>();
@@ -103,7 +105,11 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 					}else{
 						Toast.makeText(getApplicationContext(), "You don't have make any request till now..", Toast.LENGTH_LONG).show();
 					}
-					
+				}else if(serviceList.get(grouppos).getList().get(childpos).name.equalsIgnoreCase("Track Service Rates")){
+					mIntent = new Intent(DashBoard.this,ServiceRates.class);
+					//mIntent.putExtra("name", name);
+					//mIntent.putExtra("id", id);
+					startActivity(mIntent);
 				}
 				return false;
 			}
@@ -115,7 +121,7 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 		ll_rto_service = (LinearLayout)findViewById(R.id.ll_rto_service);
 		ll_government_service = (LinearLayout)findViewById(R.id.ll_government_service);
 		*/
-		iv_menu = (ImageView)findViewById(R.id.iv_menu);
+		iv_menu = (LinearLayout)findViewById(R.id.iv_menu);
 		iv_search = (ImageView)findViewById(R.id.iv_search);
 		iv_whatsapp = (ImageView)findViewById(R.id.iv_whatsapp);
 		iv_call = (ImageView)findViewById(R.id.iv_call);
@@ -138,11 +144,19 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-				mIntent = new Intent(DashBoard.this,InnerServices.class);
-				mIntent.putExtra("id",position);
-				mIntent.putExtra("name",allServiceList.get(position).getService_name());
-				System.out.println("name: "+allServiceList.get(position).getService_name());
-				startActivity(mIntent);
+				if(allServiceList.get(position).getList().size()> 0){
+					mIntent = new Intent(DashBoard.this,InnerServices.class);
+					mIntent.putExtra("id",position);
+					mIntent.putExtra("name",allServiceList.get(position).getService_name());
+					System.out.println("name: "+allServiceList.get(position).getService_name());
+					startActivity(mIntent);
+				}else{
+					mIntent = new Intent(DashBoard.this,InnerServices.class);
+					mIntent.putExtra("id",position);
+					mIntent.putExtra("name",allServiceList.get(position).getService_name());
+					System.out.println("name: "+allServiceList.get(position).getService_name());
+					startActivity(mIntent);
+				}
 			}
 		});
 	
@@ -173,7 +187,7 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 			break;
 		
 		case R.id.iv_call:
-			mIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "9674448739" ));
+			mIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "09886484800" ));
 			startActivity(mIntent);
 			break;
 			
@@ -228,6 +242,15 @@ public class DashBoard extends BaseActivity implements OnClickListener{
 		final ListView lv_dialog_members = (ListView) dialog.findViewById(R.id.lv_dialog_members);
 		ll_dialog_search = (AutoCompleteTextView) dialog.findViewById(R.id.ll_dialog_search);
 
+		LinearLayout ivSearchBack = (LinearLayout)dialog.findViewById(R.id.ivSearchBack);
+		ivSearchBack.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				dialog.dismiss();
+			}
+		});
+		
+		
 		ll_dialog_search.addTextChangedListener(new TextWatcher() {
 
 			@Override

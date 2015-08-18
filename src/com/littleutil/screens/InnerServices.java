@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -33,9 +34,10 @@ public class InnerServices extends BaseActivity{
 	private AutoCompleteTextView ll_dialog_search;
 	private MemberAdapter memberadapter;
 	private int id;
-	private ImageView iv_search,iv_whatsapp,ivBack;
+	private ImageView iv_search,iv_whatsapp;
 	private ListView ll_service_list;
 	private SubServiceAdapter adapter;
+	private LinearLayout ivBack;
 	private ArrayList<SubServiceBean> listItem = new ArrayList<SubServiceBean>();
 	private ArrayList<SubServiceBean> list = new ArrayList<SubServiceBean>();
 
@@ -51,7 +53,7 @@ public class InnerServices extends BaseActivity{
 		
 		iv_search = (ImageView)findViewById(R.id.iv_search);
 		iv_whatsapp = (ImageView)findViewById(R.id.iv_whatsapp);
-		ivBack = (ImageView)findViewById(R.id.ivBack);
+		ivBack = (LinearLayout)findViewById(R.id.ivBack);
 		
 		iv_search.setOnClickListener(this);
 		iv_whatsapp.setOnClickListener(this);

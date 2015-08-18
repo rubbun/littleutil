@@ -13,15 +13,20 @@
         android:background="#007A87"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingLeft="7dp" >
+        android:paddingLeft="0dp" >
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/ivBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_back" />
+            android:gravity="center" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvServiceName"
@@ -70,17 +75,6 @@
             android:scrollbars="none"
             android:scrollingCache="false" >
         </ListView>
-        <!--
-        <GridView
-            android:id="@+id/gridView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numColumns="2"
-            android:verticalSpacing="5dp"
-            android:horizontalSpacing="5dp"
-             >
-        </GridView>
-        -->
     </LinearLayout>
 
 </LinearLayout>

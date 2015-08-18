@@ -7,7 +7,7 @@
     
     <string name="home_manager_text">I am \nyour \nHome\nManager</string>
     
-    <string name="name">Your Name</string>
+    <string name="name">Name</string>
     <string name="pincode">Zip Code</string>
     
     <string name="email">Email</string>
